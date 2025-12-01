@@ -12,6 +12,9 @@ def start_new_game():
         else:
             print("Invalid input, please enter y or n.")
     
+def intro():
+    print("In the warm, cozy confines of the Drunken Demigorgan Tavern, the only watering hole in Snagleback village, you contemplate the choices that led you here and the future that awaits.")
+
 
 def main():
     game_running = True
