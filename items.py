@@ -1,7 +1,8 @@
 
 
 class Weapon:
-    def __init__(self, name, attack, hands, bonus=None):
+    def __init__(self, category, name, attack, hands, bonus=None):
+        self.category = category
         self.name = name
         self.attack = attack
         self.hands = hands
@@ -10,7 +11,8 @@ class Weapon:
 
 
 class Armour:
-    def __init__(self, name, protection, bonus=None):
+    def __init__(self, category, name, protection, bonus=None):
+        self.category = category
         self.name = name
         self.protection = protection
         self.bonus = bonus
