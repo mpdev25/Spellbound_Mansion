@@ -5,8 +5,8 @@ def is_alive(self):
     return self.life > 0
 
 def roll_initiative(player, enemy):
-    player_initiative = roll_d20()
-    enemy_initiative = roll_d20()
+    player_initiative = roll_dice(20)
+    enemy_initiative = roll_dice(20)
     if player_initiative > enemy_initiative:
         return [player, enemy]
     elif enemy_initiative > player_initiative:
@@ -40,14 +40,24 @@ def start_battle(turn_order):
         current_turn_index = 1 - current_turn_index
 
 
-def melee_attack(first, second):
+def melee_attack(attacker, defender):
+    attack = roll_dice(20) + (attacker.weapon.bonus + attacker.melee_bonus)
+    if attack > defender.protection:
+        damage_dealt = attacker.weapon.damage
+        defender.life -=damage_dealt
 
 
 
 
-def ranged_attack(first, second):
+def ranged_attack(attacker, defender):
+    attack = roll_dice(20) + (attacker.weapon.bonus + attacker.ranged_bonus)
+    if attack > defender.protection:
+        damage_dealt = attacker.weapon.damage
+        defender.life -=damage_dealt
 
 
-
-
-def magic_attack(first, second):
+def magic_attack(attacker, defender):
+    attack = roll_dice(20) + (attacker.weapon.bonus + attacker.magic_bonus)
+    if attack > defender.protection:
+        damage_dealt = attacker.weapon.damage
+        defender.life -=damage_dealt
