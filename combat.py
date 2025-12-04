@@ -12,7 +12,7 @@ def roll_initiative(player, enemy):
     elif enemy_initiative > player_initiative:
         return [enemy, player]
     else:
-        roll_initiative(player, enemy)
+        return roll_initiative(player, enemy)
 
 
 def start_battle(turn_order):
@@ -23,16 +23,17 @@ def start_battle(turn_order):
         attacker = participants[current_turn_index]
         defender = participants[1 - current_turn_index]
         weapon_category = attacker.weapon.category
-        if attacker.is_alive():
-            if weapon_category == "melee":
-                melee_attack(attaker, defender)
-            elif weapon_category == "ranged":
-                ranged_attack(attaker, defender)
-            elif weapon_category =="magic":
-                magic_attack(attaker, defender)
+        
+        if weapon_category == "melee":
+            melee_attack(attacker, defender)
+        elif weapon_category == "ranged":
+            ranged_attack(attacker, defender)
+        elif weapon_category == "magic":
+            magic_attack(attacker, defender)
+            
         if not defender.is_alive():
             print(f"\n{defender.name} has been defeated!")
-            if defender = player:
+            if defender == player:
                 print(f"\n{player.name}, your quest ends here")
                 game_running = false
             break
@@ -44,7 +45,7 @@ def melee_attack(attacker, defender):
     attack = roll_dice(20) + (attacker.weapon.bonus + attacker.melee_bonus)
     if attack > defender.protection:
         damage_dealt = attacker.weapon.damage
-        defender.life -=damage_dealt
+        defender.life -= damage_dealt
 
 
 
@@ -53,11 +54,11 @@ def ranged_attack(attacker, defender):
     attack = roll_dice(20) + (attacker.weapon.bonus + attacker.ranged_bonus)
     if attack > defender.protection:
         damage_dealt = attacker.weapon.damage
-        defender.life -=damage_dealt
+        defender.life -= damage_dealt
 
 
 def magic_attack(attacker, defender):
     attack = roll_dice(20) + (attacker.weapon.bonus + attacker.magic_bonus)
     if attack > defender.protection:
         damage_dealt = attacker.weapon.damage
-        defender.life -=damage_dealt
+        defender.life -= damage_dealt
