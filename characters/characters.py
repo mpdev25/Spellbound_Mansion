@@ -1,7 +1,7 @@
-
+from main import get_player_name roll_character
 
 class Character:
-    def __init__(self, name, life, protection, strength, dexterity, magic, melee_bonus, ranged_bonus, magic_bonus, weapon):
+    def __init__(self, name=None, life, protection, strength, dexterity, magic, melee_bonus, ranged_bonus, magic_bonus, weapon=None):
         self.name = name
         self.life = life
         self.protection = protection
@@ -13,6 +13,6 @@ class Character:
         self.magic_bonus = magic_bonus
         self.weapon = weapon
 
-player_character = Character()
+player = roll_character(player_name)
 
 goblin = Character("goblin", 10, 11, 12, 14, 8)
