@@ -1,5 +1,5 @@
-import tkinter as tk
-
+from dice import roll_dice
+from characters import Character
 
 
 def start_new_game():
@@ -17,9 +17,10 @@ def get_player_name():
     return player_name
     
 def roll_character():
-    strength = roll_dice(6) + roll-dice(6) + roll-dice(6)
-    dexterity = roll_dice(6) + roll-dice(6) + roll-dice(6)
-    magic = roll_dice(6) + roll-dice(6) + roll-dice(6)
+    player = Character()
+    strength = roll_dice(6) + roll_dice(6) + roll_dice(6)
+    dexterity = roll_dice(6) + roll_dice(6) + roll_dice(6)
+    magic = roll_dice(6) + roll_dice(6) + roll_dice(6)
     life = (roll_dice(20) + roll_dice(20)) // 2 + (melee_bonus + ranged_bonus + magic_bonus)
     protection = roll_dice(6) + (melee_bonus + ranged_bonus + magic_bonus)
     melee_bonus =  strength // 6
