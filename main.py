@@ -1,5 +1,5 @@
 from dice import roll_dice
-from characters import Character
+from characters.characters import Character, roll_character
 
 
 def start_new_game():
@@ -13,19 +13,10 @@ def start_new_game():
             print("Invalid input, please enter y or n.")
 
 def get_player_name():
-    player_name = input("Type character name: ")
+    print("\"Your new here, what's your name?\" says a man whose clothing reminds you all too much of your own impoverished upbringing.")
+    player_name = input(f"I'm {player_name}")
     return player_name
     
-def roll_character():
-    player = Character()
-    strength = roll_dice(6) + roll_dice(6) + roll_dice(6)
-    dexterity = roll_dice(6) + roll_dice(6) + roll_dice(6)
-    magic = roll_dice(6) + roll_dice(6) + roll_dice(6)
-    life = (roll_dice(20) + roll_dice(20)) // 2 + (melee_bonus + ranged_bonus + magic_bonus)
-    protection = roll_dice(6) + (melee_bonus + ranged_bonus + magic_bonus)
-    melee_bonus =  strength // 6
-    ranged_bonus = dexterity // 6
-    magic_bonus = magic // 6
     
 
 
@@ -61,9 +52,9 @@ def intro():
     print("As you sit finishing your ale and contemplating your next move you overhear some interesting conversation concerning an abandoned mansion not far from Snagleback village.")
     print("You turn to the people talking at the table next to you and introduce yourself.")
     print("Hi, I couldn't help but hear you talking of a mysterious mansion nearby")
-    print("\"Your new here, what's your name?\" says a man whose clothing reminds you all too much of your own impoverished upbringing")
-    player_name = get_player_name()
-    print(f"I'm {player_name}")
+    
+    player.name = get_player_name()
+    print(f"I'm {player.name}")
 
 
     
