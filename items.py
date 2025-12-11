@@ -8,13 +8,13 @@ class Weapon:
         self.hands = hands
         self.bonus = bonus
 
-    short_sword = Weapon("melee", "short sword", roll_dice(6), 1)
+short_sword = Weapon("melee", "short sword", roll_dice(6), 1)
 
-    short_bow = Weapon("ranged", "shortbow", roll_dice(6), 2)
+short_bow = Weapon("ranged", "shortbow", roll_dice(6), 2)
 
-    magic_staff = Weapon("magic", "magic staff", roll_dice(6), 2)
+magic_staff = Weapon("magic", "magic staff", roll_dice(6), 2)
 
-    long_bow = Weapon("ranged", "longbow", roll_dice(8), 2)
+long_bow = Weapon("ranged", "longbow", roll_dice(8), 2)
 
 class Armour:
     def __init__(self, category, name, protection, bonus=None):

@@ -1,5 +1,5 @@
 from dice import roll_dice
-from characters.characters import Character, roll_character
+from characters.characters import Character, roll_character, get_player_name
 
 
 def start_new_game():
@@ -12,11 +12,7 @@ def start_new_game():
         else:
             print("Invalid input, please enter y or n.")
 
-def get_player_name():
-    print("\"Your new here, what's your name?\" says a man whose clothing reminds you all too much of your own impoverished upbringing.")
-    player_name = input(f"I'm {player_name}")
-    return player_name
-    
+
     
 
 
