@@ -40,14 +40,36 @@ rat_bite = Weapon("melee", "rat bite", roll_dice(6), 1)
 
 deathly_touch = Weapon("magic", "deathly touch", roll_dice(12), 2, 2)
 
+wand_of_destruction = Weapon("magic", "wand of destruction", roll_dice(20), 1, 3)
+
+enhanced_longbow = Weapon("ranged", "enhanced longbow", roll_dice(12), 2, 2)
+
+expertly_crafted_longsword = Weapon("melee", "expertly crafter longsword", roll_dice(12), 1, 3)
+
+great_sword = Weapon("melee", "great sword", roll_dice(12), 2, 3)
+
+heavy_crossbow = Weapon("ranged", "heavy crossbow", roll_dice(12), 2, 3)
+
+staff_of_light = Weapon("magic", "staff of light", roll_dice(12), 2, 3)
+
 class Armour:
-    def __init__(self, category, name, protection, bonus=None):
+    def __init__(self, category, name, protection):
         self.category = category
         self.name = name
         self.protection = protection
-        self.bonus = bonus
+        
 
+leather_armour = Armour("armour", "leather armour", 2)
 
+chainmail_armour = Armour("armour", "chainmail armour", 4)
+
+plate_armour = Armour("armour", "plate armour", 6)
+
+robe_of_protection = Armour("armour", "robe of protection", 10)
+
+small_shield = Armour("shield", "small shield", 2)
+
+large_shield = Armour("shield", "large shield", 4)
 
 class MagicItem:
     def __init__(self, name, attack=None, damage=None, protection=None):
@@ -55,3 +77,5 @@ class MagicItem:
         self.attack = attack
         self.damage = damage
         self.protection = protection
+
+
