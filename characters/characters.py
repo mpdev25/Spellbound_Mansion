@@ -120,7 +120,7 @@ lost_bandit = Character("lost bandit", 12, 12, 12, 12, 12, short_sword)
 
 orc_longbow = Character("orc with a longbow", 12, 12, 12, 12, 5, long_bow)
 
- ogre = Character("ogre with a huge spiked club", 18, 16, 18, 14, 8, huge_spiked_club)
+ogre = Character("ogre with a huge spiked club", 18, 16, 18, 14, 8, huge_spiked_club)
 
 horde_of_rats = Character("horde of rats", 20, 10, 6, 12, 2, rat_bite)
 
