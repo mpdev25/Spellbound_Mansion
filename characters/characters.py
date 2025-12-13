@@ -1,6 +1,6 @@
 
 from dice import roll_dice
-from items import Weapon, short_sword, short_bow, magic_staff, long_bow, long_sword, fire_staff, great_ax, hellhound_teeth
+from items import Weapon, short_sword, short_bow, magic_staff, long_bow, long_sword, fire_staff, great_axe, hellhound_teeth, spear
 
 
 class Character:
@@ -17,19 +17,23 @@ class Character:
         self.weapon = weapon
 
 def __str__(self):
-    return (f"Character: {self.name}\n"
-            f" Life: {self.life}\n"
-            f" Protection: {self.protection}\n"
-            f" Strength: {self.strength}\n"
-            f" Dexterity: {self.dexterity}\n"
-            f" Magic: {self.magic}\n"
-            f" Weapon: {self.weapon}")
+    return (
+        f"Character: {self.name}\n"
+        f"Life: {self.life}\n"
+        f"Protection: {self.protection}\n"
+        f"Strength: {self.strength}\n"
+        f"Dexterity: {self.dexterity}\n"
+        f"Magic: {self.magic}\n"
+        f"Weapon: {self.weapon}")
 
-def get_player_name():
+def get_player_name(player):
     print("\"You're new here, what's your name?\" says a man whose clothing reminds you all too much of your own impoverished upbringing.")
     player_name = input("I'm ")
+    print(f"\n--- Character Sheet ---\n{str(player)}")
     return player_name
-    
+
+
+
 
 def roll_character():
     strength = roll_dice(6) + roll_dice(6) + roll_dice(6)
@@ -57,7 +61,30 @@ def roll_character():
     
     return player
 
-
+def get_weapon(player):
+    while True:
+        try:
+            choice = int(input("Enter your choice: 1, 2 or 3: "))
+        
+        
+            if choice == 1:
+                print("You've become adept with the short sword your adventuress aunt left you when she died.")
+                player.weapon = short_sword
+                break
+            elif choice == 2:
+                print("You've become adept with the shortbow your adventuress aunt left you when she died")
+                player.weapon = short_bow
+                break
+            elif choice == 3:
+                print("You've become adept with the magic staff your adventuress aunt left you when she died")
+                player.weapon = magic_staff
+                break
+            
+            else:
+                choice = int(input("Enter your choice: 1, 2 or 3: "))
+                
+        except ValueError:
+            print("Invalid input! Please enter 1, 2 or 3")
 
 goblin_sword = Character("goblin with a shortsword", 6, 6, 6, 6, 6, short_sword)
 
@@ -69,32 +96,32 @@ skeleton_sword = Character("skeleton with a longsword", 8, 10, 12, 7, 5, long_sw
 
 undead_sorcerer= Character("undead sorcerer", 20, 18, 12, 12, 18, fire_staff)
 
-orc_ax= Character("orc with a greatax", 12, 12, 12, 12, 5, great_ax)
+orc_axe = Character("orc with a greataxe", 12, 12, 12, 12, 5, great_axe)
 
 hellhound = Character("hellhound", 14, 12, 18, 18, 8, hellhound_teeth)
 
-#= Character("")
+zombie_warrior = Character("zombie with a spear", 10, 12, 15, 14, 7, spear)
 
-#= Character("")
+zombie_short_bow = Character("zombie with a shortbow", 10, 12, 14, 15, 7, short_bow)
 
-#= Character("")
+specter = Character("specter", 14, 14, 8, 12, 18, psychic_blast)
 
-#= Character("")
+ghoul = Character("ghoul", 12, 12, 16, 14, 12, ghoul_claws)
 
-#= Character("")
+animated_armour = Character("animated armour", 12, 18, 16, 12, 8, long_sword)
 
-#= Character("")
+shadow_lurker = Character("shadodw lurker" 14, 20, 10, 18, 18, corrosive_spit)
 
-#= Character("")
+giant_spider = Character("giant spider", 16, 14, 14, 16, 6, spider_fangs)
 
-#= Character("")
+young_giant_spider = Character("young giant spider", 10, 10, 8, 10, 6, spider_fangs)
 
-#= Character("")
+lost_bandit = Character("lost bandit", 12, 12, 12, 12, 12, short_sword)
 
-#= Character("")
+orc_longbow = Character("orc with a longbow", 12, 12, 12, 12, 5, long_bow)
 
-#= Character("")
+ ogre = Character("ogre with a huge spiked club", 18, 16, 18, 14, 8, huge_spiked_club)
 
-#= Character("")
+horde_of_rats = Character("horde of rats", 20, 10, 6, 12, 2, rat_bite)
 
-#= Character("")
+lich = Character("lich", 20, 20, 18, 12, 18, deathly_touch)

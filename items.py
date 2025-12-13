@@ -20,9 +20,25 @@ long_sword = Weapon("melee", "long sword", roll_dice(8), 1, 1)
 
 fire_staff = Weapon("magic", "fire staff", roll_dice(20), 2, 5)
 
-great_ax = Weapon("melee", "great ax", roll_dice(10), 2, 2)
+great_axe = Weapon("melee", "great axe", roll_dice(10), 2, 2)
 
-hellhound_teeth = Weapon("melee", "hellhound teeth", roll_dice(20), 2)
+hellhound_teeth = Weapon("melee", "hellhound teeth", roll_dice(10), 2)
+
+spear = Weapon("melee", "spear", roll_dice(8), 2, 1)
+
+psychic_blast = Weapon("magic", "psychic blast", roll_dice(12), 1)
+
+ghoul_claws = Weapon("melee", "ghoul claws", roll_dice(10), 2, 1)
+
+corrosive_spit = Weapon("ranged", "corrosive spit" roll_dice(12), 1)
+
+spider_fangs = Weapon("melee", "spider fangs", roll_dice(12), 1, 1)
+
+huge_spiked_club = Weapon("melee", "huge spiked club", roll_dice(12), 2, 2)
+
+rat_bite = Weapon("melee", "rat bite", roll_dice(6), 1)
+
+deathly_touch = Weapon("magic", "deathly touch", roll_dice(12), 2, 2)
 
 class Armour:
     def __init__(self, category, name, protection, bonus=None):
