@@ -72,10 +72,33 @@ small_shield = Armour("shield", "small shield", 2)
 large_shield = Armour("shield", "large shield", 4)
 
 class MagicItem:
-    def __init__(self, name, attack=None, damage=None, protection=None):
+    def __init__(self, name, life = None, protection=None):
         self.name = name
-        self.attack = attack
-        self.damage = damage
+        self.life = life
         self.protection = protection
+             
 
+sorcerers_tome = MagicItem("tome of the sorcerer")
 
+healing_potion = MagicItem("healing potion", 5)
+
+greater_healing_potion = MagicItem("grater healing potion", 10)
+
+potion_of_stone_skin = MagicItem("potion of stone skin", 0, 4)
+
+shield_scroll = MagicItem("scroll of shield", 0, 6)
+
+class Treasure:
+    def __init__(self, name, value):
+        self.name = name
+        self.value = value
+
+giant_ruby = Treasure("giant ruby", 50)
+
+small_chest = Treasure("small chest of gold coins", 20)
+
+large_chest = Treasure("large chest of gold and jewels", 100)
+
+pouch = Treasure("pouch of diamonds", 75)
+
+sorcerers_horde = Treasure("the sorcerers hoard", 1000)
