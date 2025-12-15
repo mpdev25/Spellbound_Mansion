@@ -30,7 +30,7 @@ psychic_blast = Weapon("magic", "psychic blast", roll_dice(12), 1)
 
 ghoul_claws = Weapon("melee", "ghoul claws", roll_dice(10), 2, 1)
 
-corrosive_spit = Weapon("ranged", "corrosive spit" roll_dice(12), 1)
+corrosive_spit = Weapon("ranged", "corrosive spit", roll_dice(12), 1)
 
 spider_fangs = Weapon("melee", "spider fangs", roll_dice(12), 1, 1)
 

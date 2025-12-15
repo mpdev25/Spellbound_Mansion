@@ -1,6 +1,6 @@
 from dice import roll_dice
-from characters.characters import Character, roll_character, get_player_name, __str__, get_weapon, goblin_sword
-from items import Weapon, short_sword, short_bow, magic_staff, long_bow
+import characters
+import items 
 
 def start_new_game():
     while True:

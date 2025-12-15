@@ -1,6 +1,5 @@
-
 from dice import roll_dice
-from items import Weapon, short_sword, short_bow, magic_staff, long_bow, long_sword, fire_staff, great_axe, hellhound_teeth, spear
+import items
 
 
 class Character:
@@ -110,7 +109,7 @@ ghoul = Character("ghoul", 12, 12, 16, 14, 12, ghoul_claws)
 
 animated_armour = Character("animated armour", 12, 18, 16, 12, 8, long_sword)
 
-shadow_lurker = Character("shadodw lurker" 14, 20, 10, 18, 18, corrosive_spit)
+shadow_lurker = Character("shadodw lurker", 14, 20, 10, 18, 18, corrosive_spit)
 
 giant_spider = Character("giant spider", 16, 14, 14, 16, 6, spider_fangs)
 
