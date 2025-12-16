@@ -22,12 +22,12 @@ def intro():
     print("You focused your training on")
   
 
-    player = roll_character()
+    player = characters.roll_character()
 
     print("1 Melee combat")
     print("2 Ranged combat")
     print("3 magic combat")
-    get_weapon(player)
+    characters.get_weapon(player)
 
         
 
@@ -38,9 +38,9 @@ def intro():
     print("You turn to the people talking at the table next to you and introduce yourself.")
     print("Hi, I couldn't help but hear you talking of a mysterious mansion nearby")
     
-    player.name = get_player_name(player)
+    player.name =characters.get_player_name(player)
     
-   # print(f"\n--- Character Sheet ---\n{player}")
+    
    
 
 

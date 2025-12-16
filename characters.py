@@ -3,7 +3,7 @@ import items
 
 
 class Character:
-    def __init__(self, name, life, protection, strength, dexterity, magic, weapon=None):
+    def __init__(self, name, life, protection, strength, dexterity, magic, weapon):
         self.name = name
         self.life = life
         self.protection = protection
@@ -47,7 +47,7 @@ def roll_character():
     life = (roll_dice(20) + roll_dice(20)) // 2 + total_bonus
     protection = roll_dice(6) + total_bonus
     name = "player"
-
+    starting_weapon = items.unarmed
     player = Character(
         name = name,
         life = life,
@@ -55,10 +55,13 @@ def roll_character():
         strength = strength,
         dexterity = dexterity,
         magic = magic,
-        weapon = Weapon
+        weapon = starting_weapon
     )
-    
+    print(f"\n--- Character Sheet ---\n{player}")
     return player
+
+
+
 
 def get_weapon(player):
     while True:
@@ -68,15 +71,15 @@ def get_weapon(player):
         
             if choice == 1:
                 print("You've become adept with the short sword your adventuress aunt left you when she died.")
-                player.weapon = short_sword
+                player.weapon = items.short_sword
                 break
             elif choice == 2:
                 print("You've become adept with the shortbow your adventuress aunt left you when she died")
-                player.weapon = short_bow
+                player.weapon = items.short_bow
                 break
             elif choice == 3:
                 print("You've become adept with the magic staff your adventuress aunt left you when she died")
-                player.weapon = magic_staff
+                player.weapon = items.magic_staff
                 break
             
             else:
@@ -85,42 +88,42 @@ def get_weapon(player):
         except ValueError:
             print("Invalid input! Please enter 1, 2 or 3")
 
-goblin_sword = Character("goblin with a shortsword", 6, 6, 6, 6, 6, short_sword)
+goblin_sword = Character("goblin with a shortsword", 6, 6, 6, 6, 6, items.short_sword)
 
-goblin_bow = Character("goblin with a shortbow", 6, 6, 6, 6, 6, short_bow)
+goblin_bow = Character("goblin with a shortbow", 6, 6, 6, 6, 6, items.short_bow)
 
-skeleton_longbow = Character("skeleton with a longbow", 8, 10, 7, 12, 5, long_bow)
+skeleton_longbow = Character("skeleton with a longbow", 8, 10, 7, 12, 5, items.long_bow)
 
-skeleton_sword = Character("skeleton with a longsword", 8, 10, 12, 7, 5, long_sword)
+skeleton_sword = Character("skeleton with a longsword", 8, 10, 12, 7, 5, items.long_sword)
 
-undead_sorcerer= Character("undead sorcerer", 20, 18, 12, 12, 18, fire_staff)
+undead_sorcerer= Character("undead sorcerer", 20, 18, 12, 12, 18, items.fire_staff)
 
-orc_axe = Character("orc with a greataxe", 12, 12, 12, 12, 5, great_axe)
+orc_axe = Character("orc with a greataxe", 12, 12, 12, 12, 5, items.great_axe)
 
-hellhound = Character("hellhound", 14, 12, 18, 18, 8, hellhound_teeth)
+hellhound = Character("hellhound", 14, 12, 18, 18, 8, items.hellhound_teeth)
 
-zombie_warrior = Character("zombie with a spear", 10, 12, 15, 14, 7, spear)
+zombie_warrior = Character("zombie with a spear", 10, 12, 15, 14, 7, items.spear)
 
-zombie_short_bow = Character("zombie with a shortbow", 10, 12, 14, 15, 7, short_bow)
+zombie_short_bow = Character("zombie with a shortbow", 10, 12, 14, 15, 7, items.short_bow)
 
-specter = Character("specter", 14, 14, 8, 12, 18, psychic_blast)
+specter = Character("specter", 14, 14, 8, 12, 18, items.psychic_blast)
 
-ghoul = Character("ghoul", 12, 12, 16, 14, 12, ghoul_claws)
+ghoul = Character("ghoul", 12, 12, 16, 14, 12, items.ghoul_claws)
 
-animated_armour = Character("animated armour", 12, 18, 16, 12, 8, long_sword)
+animated_armour = Character("animated armour", 12, 18, 16, 12, 8, items.long_sword)
 
-shadow_lurker = Character("shadodw lurker", 14, 20, 10, 18, 18, corrosive_spit)
+shadow_lurker = Character("shadodw lurker", 14, 20, 10, 18, 18, items.corrosive_spit)
 
-giant_spider = Character("giant spider", 16, 14, 14, 16, 6, spider_fangs)
+giant_spider = Character("giant spider", 16, 14, 14, 16, 6, items.spider_fangs)
 
-young_giant_spider = Character("young giant spider", 10, 10, 8, 10, 6, spider_fangs)
+young_giant_spider = Character("young giant spider", 10, 10, 8, 10, 6, items.spider_fangs)
 
-lost_bandit = Character("lost bandit", 12, 12, 12, 12, 12, short_sword)
+lost_bandit = Character("lost bandit", 12, 12, 12, 12, 12, items.short_sword)
 
-orc_longbow = Character("orc with a longbow", 12, 12, 12, 12, 5, long_bow)
+orc_longbow = Character("orc with a longbow", 12, 12, 12, 12, 5, items.long_bow)
 
-ogre = Character("ogre with a huge spiked club", 18, 16, 18, 14, 8, huge_spiked_club)
+ogre = Character("ogre with a huge spiked club", 18, 16, 18, 14, 8, items.huge_spiked_club)
 
-horde_of_rats = Character("horde of rats", 20, 10, 6, 12, 2, rat_bite)
+horde_of_rats = Character("horde of rats", 20, 10, 6, 12, 2, items.rat_bite)
 
-lich = Character("lich", 20, 20, 18, 12, 18, deathly_touch)
+lich = Character("lich", 20, 20, 18, 12, 18, items.deathly_touch)

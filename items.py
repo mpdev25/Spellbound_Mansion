@@ -8,6 +8,8 @@ class Weapon:
         self.hands = hands
         self.bonus = bonus
 
+unarmed = Weapon("melee", "unarmed", roll_dice(2), 1)
+
 short_sword = Weapon("melee", "short sword", roll_dice(6), 1)
 
 short_bow = Weapon("ranged", "shortbow", roll_dice(6), 2)

@@ -7,42 +7,42 @@ class Location:
 
 room_zero = Location("antechamber", "With just a gentle push the door to the mansion swings open.\nThe ease of entry gives you little comfort, after all if it's this weasy to get in, why has nobody ever come out?\n You find yourself standing in a dimly lit antechamber with three doors, to your right, your left and straight ahead.\nSudenly the door behind you slams shut and you hear something moving in the corner of the room.")
 
-room_one = Location("", "")
+room_one = Location("small bedroom", "")
 
-room_two = Location("", "")
+room_two = Location("large bedroom", "")
 
-room_three = Location("", "")
+room_three = Location("main hall", "")
 
-room_four = Location("", "")
+room_four = Location("kitchen", "")
 
-room_five = Location("", "")
+room_five = Location("study", "")
 
-room_six = Location("", "")
+room_six = Location("library", "")
 
-room_seven = Location("", "")
+room_seven = Location("servants room", "")
 
-room_eight = Location("", "")
+room_eight = Location("laboratory", "")
 
-room_nine = Location("", "")
+room_nine = Location("dining room", "")
 
-room_ten = Location("", "")
+room_ten = Location("conservatory", "")
 
-room_eleven = Location("", "")
+room_eleven = Location("wine cellar", "")
 
-room_twelve = Location("", "")
+room_twelve = Location("attic", "")
 
-room_thirteen = Location("", "")
+room_thirteen = Location("large bathroom", "")
 
-room_fourteen = Location("", "")
+room_fourteen = Location("family room", "")
 
-room_fifteen = Location("", "")
+room_fifteen = Location("storage room", "")
 
-room_sixteen = Location("", "")
+room_sixteen = Location("observatory", "")
 
-room_seventeen = Location("", "")
+room_seventeen = Location("small guest room", "")
 
-room_eighteen = Location("", "")
+room_eighteen = Location("large pantry", "")
 
-room_nineteen = Location("", "")
+room_nineteen = Location("large guest room", "")
 
-room_twenty = Location("", "")
+room_twenty = Location("occult workshop", "")
