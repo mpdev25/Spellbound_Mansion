@@ -27,9 +27,9 @@ def __str__(self):
 
 def get_player_name(player):
     print("\"You're new here, what's your name?\" says a man whose clothing reminds you all too much of your own impoverished upbringing.")
-    player_name = input("I'm ")
-    print(f"\n--- Character Sheet ---\n{str(player)}")
-    return player_name
+    player.name = input("I'm ")
+    print(player.name)
+    return player.name
 
 
 
@@ -57,7 +57,7 @@ def roll_character():
         magic = magic,
         weapon = starting_weapon
     )
-    print(f"\n--- Character Sheet ---\n{player}")
+    print(character_sheet(player))
     return player
 
 
@@ -72,14 +72,17 @@ def get_weapon(player):
             if choice == 1:
                 print("You've become adept with the short sword your adventuress aunt left you when she died.")
                 player.weapon = items.short_sword
+                player.strength += roll_dice(6)
                 break
             elif choice == 2:
                 print("You've become adept with the shortbow your adventuress aunt left you when she died")
                 player.weapon = items.short_bow
+                player.dexterity += roll_dice(6)
                 break
             elif choice == 3:
                 print("You've become adept with the magic staff your adventuress aunt left you when she died")
                 player.weapon = items.magic_staff
+                player.magic += roll_dice(6)
                 break
             
             else:
@@ -87,6 +90,9 @@ def get_weapon(player):
                 
         except ValueError:
             print("Invalid input! Please enter 1, 2 or 3")
+
+def character_sheet(player):
+    print(f"\n--- Character Sheet ---\n{str(player)}")
 
 goblin_sword = Character("goblin with a shortsword", 6, 6, 6, 6, 6, items.short_sword)
 

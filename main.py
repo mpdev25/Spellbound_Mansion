@@ -38,7 +38,9 @@ def intro():
     print("You turn to the people talking at the table next to you and introduce yourself.")
     print("Hi, I couldn't help but hear you talking of a mysterious mansion nearby")
     
-    player.name =characters.get_player_name(player)
+    player.name = characters.get_player_name(player)
+
+    characters.character_sheet(player)
     
     
    

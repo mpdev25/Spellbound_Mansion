@@ -1,4 +1,7 @@
 import random
+import characters
+import items
+import locations
 
 def draw_cards(location, character, items):
 
@@ -10,8 +13,8 @@ def draw_cards(location, character, items):
 
     return (room, enemy, loot)
 
-location = [room_one, room_two, room_three, room_four, room_five, room_six,  room_seven, room_eight, room_nine, room_ten, room_eleven, room_twelve, room_thirteen, room_fourteen, room_fifteen, room_sixteen, room_seventeen, room_eighteen, room_nineteen, room_twenty]
+location = [locations.room_one, locations.room_two, locations.room_three, locations.room_four, locations.room_five, locations.room_six,  locations.room_seven, locations.room_eight, locations.room_nine, locations.room_ten, locations.room_eleven, locations.room_twelve, locations.room_thirteen, locations.room_fourteen, locations.room_fifteen,locations. room_sixteen, locations.room_seventeen, locations.room_eighteen, locations.room_nineteen, locations.room_twenty]
 
-enemy = [goblin_sword, goblin_bow, skeleton_longbow, skeleton_sword, undead_sorcerer, orc_axe, hellhound, zombie_warrior, zombie_short_bow, specter, ghoul, animated_armour, shadow_lurker, giant_spider, young_giant_spider, lost_bandit, orc_longbow, ogre, horde_of_rats, lich]
+enemy = [characters.goblin_sword, characters.goblin_bow, characters.skeleton_longbow, characters.skeleton_sword, characters.undead_sorcerer, characters.orc_axe, characters.hellhound, characters.zombie_warrior, characters.zombie_short_bow, characters.specter, characters.ghoul, characters.animated_armour, characters.shadow_lurker, characters.giant_spider, characters.young_giant_spider, characters.lost_bandit, characters.orc_longbow, characters.ogre, characters.horde_of_rats, characters.lich]
 
-loot = [wand_of_destruction, enhanced_longbow, expertly_crafted_longsword, great_sword, heavy_crossbow, staff_of_light, sorcerers_tome, healing_potion, greater_healing_potion, potion_of_stone_skin, shield_scroll, giant_ruby, small_chest, large_chest, pouch, sorcerers_horde, chainmail_armour, plate_armour, robe_of_protection, small_shield, large_shield]
+loot = [items.wand_of_destruction, items.enhanced_longbow, items.expertly_crafted_longsword, items.great_sword, items.heavy_crossbow, items.staff_of_light, items.sorcerers_tome, items.healing_potion, items.greater_healing_potion, items.potion_of_stone_skin, items.shield_scroll, items.giant_ruby, items.small_chest, items.large_chest, items.pouch, items.sorcerers_horde, items.chainmail_armour, items.plate_armour, items.robe_of_protection, items.small_shield, items.large_shield]
