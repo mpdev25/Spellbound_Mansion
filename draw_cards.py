@@ -3,13 +3,19 @@ import characters
 import items
 import locations
 
-def draw_cards(location, character, items):
+def draw_cards(location_list, character_list, items_list):
 
-    room = random.choice(location)
+    room_index = random.randrange(len(location_list))
 
-    enemy = random.choice(character)
+    enemy_index = random.randrange(len(character_list))
 
-    loot = random.choice(items)
+    loot_index = random.randrange(len(items_list))
+
+    room = location_list.pop(room_index)
+
+    enemy = character_list.pop(enemy_index)
+
+    loot = items_list.pop(loot_index)
 
     return (room, enemy, loot)
 

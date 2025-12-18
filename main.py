@@ -22,28 +22,28 @@ def intro():
     print("You focused your training on")
   
 
-    player = characters.roll_character()
+    my_player = characters.roll_character()
 
     print("1 Melee combat")
     print("2 Ranged combat")
     print("3 magic combat")
-    characters.get_weapon(player)
 
-        
-
+    characters.get_weapon(my_player)
     
         
-
     print("As you sit finishing your ale and contemplating your next move you overhear some interesting conversation concerning an abandoned mansion not far from Snagleback village.")
-    print("You turn to the people talking at the table next to you and introduce yourself.")
-    print("Hi, I couldn't help but hear you talking of a mysterious mansion nearby")
+    print("You turn to the people talking at the table next to you to learn more.")
     
-    player.name = characters.get_player_name(player)
+    my_player.name = characters.get_player_name(my_player)
 
-    characters.character_sheet(player)
+    print("I couldn't help but hear you talking of a mysterious mansion nearby")
+    print("The old Katscurse mansion, it's just a mile North of here, but I wouldn't go there if I was you the man says as his companions nod.")
+    print("It belonged to the sorcerer, Paskratos, but he hasn't been seen for fifty years. Some unwise people have enterd the mansion over the years in search of riches, but none has ever been seen again.")
+    print("The man looks at you thoughtfully for a moment, studying the keen interest in the mansion that the look on your face betrays.")
+    print("Finally he lets out a sigh and exclaims \"I can see you are an unwise person. At least wait till the morning and I will give you my old fathers leather armour. I doubt it will help much, but better than nothing perhaps.\"")
+    print(".......")
+    print("The next morning you collect the leather armour and head out to Katscurse mansion, a spring in your step adn a smile on your face -- treasue awaits!")
     
-    
-   
 
 
     

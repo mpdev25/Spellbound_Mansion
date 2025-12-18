@@ -3,7 +3,7 @@ import items
 
 
 class Character:
-    def __init__(self, name, life, protection, strength, dexterity, magic, weapon):
+    def __init__(self, name, life, protection, strength, dexterity, magic, weapon, inventory=None):
         self.name = name
         self.life = life
         self.protection = protection
@@ -14,6 +14,7 @@ class Character:
         self.ranged_bonus = dexterity // 6
         self.magic_bonus = magic // 6
         self.weapon = weapon
+        self.inventory = inventory
 
 def __str__(self):
     return (
@@ -23,7 +24,8 @@ def __str__(self):
         f"Strength: {self.strength}\n"
         f"Dexterity: {self.dexterity}\n"
         f"Magic: {self.magic}\n"
-        f"Weapon: {self.weapon}")
+        f"Weapon: {self.weapon}"
+        f"Inventory: {self.inventory}")
 
 def get_player_name(player):
     print("\"You're new here, what's your name?\" says a man whose clothing reminds you all too much of your own impoverished upbringing.")
@@ -48,6 +50,7 @@ def roll_character():
     protection = roll_dice(6) + total_bonus
     name = "player"
     starting_weapon = items.unarmed
+    inventory = []
     player = Character(
         name = name,
         life = life,
@@ -55,7 +58,8 @@ def roll_character():
         strength = strength,
         dexterity = dexterity,
         magic = magic,
-        weapon = starting_weapon
+        weapon = starting_weapon,
+        inventory = []
     )
     print(character_sheet(player))
     return player
@@ -73,16 +77,19 @@ def get_weapon(player):
                 print("You've become adept with the short sword your adventuress aunt left you when she died.")
                 player.weapon = items.short_sword
                 player.strength += roll_dice(6)
+                player.inventory.append(items.short_sword)
                 break
             elif choice == 2:
                 print("You've become adept with the shortbow your adventuress aunt left you when she died")
                 player.weapon = items.short_bow
                 player.dexterity += roll_dice(6)
+                player.inventory.append(items.short_bow)
                 break
             elif choice == 3:
                 print("You've become adept with the magic staff your adventuress aunt left you when she died")
                 player.weapon = items.magic_staff
                 player.magic += roll_dice(6)
+                player.inventory.append(items.magic_staff)
                 break
             
             else:
