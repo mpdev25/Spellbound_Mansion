@@ -3,7 +3,7 @@ import items
 
 
 class Character:
-    def __init__(self, name, life, protection, strength, dexterity, magic, weapon, inventory=None):
+    def __init__(self, name, life, protection, strength, dexterity, magic, weapon, inventory=None, equiped=None):
         self.name = name
         self.life = life
         self.protection = protection
@@ -14,7 +14,8 @@ class Character:
         self.ranged_bonus = dexterity // 6
         self.magic_bonus = magic // 6
         self.weapon = weapon
-        self.inventory = inventory
+        self.inventory = inventory if inventory is not None else []
+        self.equiped = equiped if equiped is not None else {}
 
 def __str__(self):
     return (
@@ -24,16 +25,21 @@ def __str__(self):
         f"Strength: {self.strength}\n"
         f"Dexterity: {self.dexterity}\n"
         f"Magic: {self.magic}\n"
-        f"Weapon: {self.weapon}"
-        f"Inventory: {self.inventory}")
+        f"Melee Bonus: {self.melee_bonus}\n"
+        f"Ranged Bonus: {self.ranged_bonus}\n"
+        f"Magic Bonus: {self.magic_bonus}\n"
+        f"Weapon: {self.weapon}\n"
+        f"Inventory: {self.inventory}\n"
+        f"Equiped: {self.equiped}")
+
+def character_sheet(player):
+    print(f"\n--- Character Sheet ---\n{str(player)}")
 
 def get_player_name(player):
     print("\"You're new here, what's your name?\" says a man whose clothing reminds you all too much of your own impoverished upbringing.")
     player.name = input("I'm ")
     print(player.name)
     return player.name
-
-
 
 
 def roll_character():
@@ -61,7 +67,7 @@ def roll_character():
         weapon = starting_weapon,
         inventory = []
     )
-    print(character_sheet(player))
+    
     return player
 
 
@@ -78,18 +84,21 @@ def get_weapon(player):
                 player.weapon = items.short_sword
                 player.strength += roll_dice(6)
                 player.inventory.append(items.short_sword)
+                print("Short sword added to inventory")
                 break
             elif choice == 2:
                 print("You've become adept with the shortbow your adventuress aunt left you when she died")
                 player.weapon = items.short_bow
                 player.dexterity += roll_dice(6)
                 player.inventory.append(items.short_bow)
+                print("Short bow added to inventory")
                 break
             elif choice == 3:
                 print("You've become adept with the magic staff your adventuress aunt left you when she died")
                 player.weapon = items.magic_staff
                 player.magic += roll_dice(6)
                 player.inventory.append(items.magic_staff)
+                print("Magic staff added to inventory")
                 break
             
             else:
@@ -98,8 +107,16 @@ def get_weapon(player):
         except ValueError:
             print("Invalid input! Please enter 1, 2 or 3")
 
-def character_sheet(player):
-    print(f"\n--- Character Sheet ---\n{str(player)}")
+
+
+#def equip_weapon():
+
+
+#def equip_armour():
+
+
+#def use_item():
+
 
 goblin_sword = Character("goblin with a shortsword", 6, 6, 6, 6, 6, items.short_sword)
 
