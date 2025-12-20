@@ -106,6 +106,7 @@ def get_weapon(player):
                 
         except ValueError:
             print("Invalid input! Please enter 1, 2 or 3")
+            continue
 
 
 

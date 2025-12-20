@@ -7,6 +7,8 @@ def is_alive(self):
 def roll_initiative(player, enemy):
     player_initiative = roll_dice(20)
     enemy_initiative = roll_dice(20)
+    print(f"You roll {player_initiative}!")
+    print(f"{enemy.name} rolls {enemy_initiative}!")
     if player_initiative > enemy_initiative:
         return [player, enemy]
     elif enemy_initiative > player_initiative:

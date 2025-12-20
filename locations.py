@@ -5,7 +5,7 @@ class Location:
         self.name = name
         self.description = description
 
-room_zero = Location("antechamber", "With just a gentle push the door to the mansion swings open.\nThe ease of entry gives you little comfort, after all if it's this weasy to get in, why has nobody ever come out?\n You find yourself standing in a dimly lit antechamber with three doors, to your right, your left and straight ahead.\nSudenly the door behind you slams shut and you hear something moving in the corner of the room.")
+room_zero = Location("antechamber", "With just a gentle push the door to the mansion swings open.\nThe ease of entry gives you little comfort, after all if it's this weasy to get in, why has nobody ever come out?\nYou find yourself standing in a dimly lit antechamber with three doors, to your right, your left and straight ahead.\nSudenly the door behind you slams shut. You pull at the handle but the door is imobile. Looks like you'll have to take one of the other doors.")
 
 room_one = Location("small bedroom", "")
 

@@ -1,8 +1,11 @@
 from dice import roll_dice
 import characters
+import combat
 import items
 import locations
 import draw_cards
+import movement
+
 def start_new_game():
     while True:
         user_input = input("Start a new game? y/n ").lower()
@@ -12,6 +15,7 @@ def start_new_game():
             return False
         else:
             print("Invalid input, please enter y or n.")
+            continue
 
 
     
@@ -50,10 +54,15 @@ def intro(room_list, enemy_list, loot_list):
     print("An overgrown path leads to a large oaken door.")
     print(locations.room_zero.description)
 
-    current_room, current_enemy, current_loot = draw_cards.draw_cards(room_list, enemy_list, loot_list)
+    current_room, current_enemy, current_loot = movement.direction_choice()
+    
 
-    print(f"You enter a {current_room.description}")
-
+    print(f"You enter a {current_room.name}.")
+    print(f"{current_room.description}")
+    print(f"In the room you see a {current_enemy.name} and a {current_loot.name}.")
+    print(f"The {current_enemy.name} attacks!")
+    player_initiative, enemy_initiative = combat.roll_initiative(my_player, current_enemy)
+    
     
 
 

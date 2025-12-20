@@ -1,0 +1,26 @@
+import draw_cards
+import characters
+import items
+import locations
+
+def direction_choice():
+    room_list = [locations.room_one, locations.room_two, locations.room_three, locations.room_four, locations.room_five, locations.room_six,  locations.room_seven, locations.room_eight, locations.room_nine, locations.room_ten, locations.room_eleven, locations.room_twelve, locations.room_thirteen, locations.room_fourteen, locations.room_fifteen, locations.room_sixteen, locations.room_seventeen, locations.room_eighteen, locations.room_nineteen, locations.room_twenty]
+
+    enemy_list = [characters.goblin_sword, characters.goblin_bow, characters.skeleton_longbow, characters.skeleton_sword, characters.undead_sorcerer, characters.orc_axe, characters.hellhound, characters.zombie_warrior, characters.zombie_short_bow, characters.specter, characters.ghoul, characters.animated_armour, characters.shadow_lurker, characters.giant_spider, characters.young_giant_spider, characters.lost_bandit, characters.orc_longbow, characters.ogre, characters.horde_of_rats, characters.lich]
+
+    loot_list = [items.wand_of_destruction, items.enhanced_longbow, items.expertly_crafted_longsword, items.great_sword, items.heavy_crossbow, items.staff_of_light, items.sorcerers_tome, items.healing_potion, items.greater_healing_potion, items.potion_of_stone_skin, items.shield_scroll, items.giant_ruby, items.small_chest, items.large_chest, items.pouch, items.sorcerers_horde, items.chainmail_armour, items.plate_armour, items.robe_of_protection, items.small_shield, items.large_shield]
+    while True:
+        direction = input("To take the door on the left, enter 1. To take the middle door, enter 2. To take the door on the right, enter 3. ")
+        try:
+            direction = int(direction)
+            if direction in [1, 2, 3]:
+                current_room, current_enemy, current_loot = draw_cards.draw_cards(room_list, enemy_list, loot_list)
+                return current_room, current_enemy, current_loot
+            
+            else:
+                print("Invalid input! Please enter 1, 2 or 3")
+                continue
+        except ValueError:
+            print("Invalid input! Please enter 1, 2 or 3")
+            continue
+            
