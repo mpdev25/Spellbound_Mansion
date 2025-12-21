@@ -47,25 +47,33 @@ def start_battle(turn_order, player):
 
 def melee_attack(attacker, defender):
     attack = roll_dice(20) + (attacker.weapon.bonus + attacker.melee_bonus)
+    print(f"{attacker} rolls {attack}")
     if attack > defender.protection:
         damage_dealt = attacker.weapon.damage
         defender.life -= damage_dealt
+        print(f"{defender} takes {damage_dealt} damage")
+        print(f"{defender} has {defender.life} life remaining")
 
 
 
 
 def ranged_attack(attacker, defender):
     attack = roll_dice(20) + (attacker.weapon.bonus + attacker.ranged_bonus)
+    print(f"{attacker} rolls {attack}")
     if attack > defender.protection:
         damage_dealt = attacker.weapon.damage
         defender.life -= damage_dealt
-
+        print(f"{defender} takes {damage_dealt} damage")
+        print(f"{defender} has {defender.life} life remaining")
 
 def magic_attack(attacker, defender):
     attack = roll_dice(20) + (attacker.weapon.bonus + attacker.magic_bonus)
+    print(f"{attacker} rolls {attack}")
     if attack > defender.protection:
         damage_dealt = attacker.weapon.damage
         defender.life -= damage_dealt
+        print(f"{defender} takes {damage_dealt} damage")
+        print(f"{defender} has {defender.life} life remaining")
 
 def initiate_combat(player, enemy):
     turn_order = roll_initiative(player, enemy)
