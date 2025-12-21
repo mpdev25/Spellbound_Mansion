@@ -17,6 +17,10 @@ class Character:
         self.inventory = inventory if inventory is not None else []
         self.equiped = equiped if equiped is not None else {}
 
+    def is_alive(self):
+        return self.life > 0
+
+
 def __str__(self):
     return (
         f"Character: {self.name}\n"
@@ -38,7 +42,7 @@ def character_sheet(player):
 def get_player_name(player):
     print("\"You're new here, what's your name?\" says a man whose clothing reminds you all too much of your own impoverished upbringing.")
     player.name = input("I'm ")
-    print(player.name)
+   
     return player.name
 
 

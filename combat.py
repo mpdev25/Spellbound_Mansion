@@ -1,10 +1,10 @@
 from dice import roll_dice
 from main import main
+import characters
 
-def is_alive(self):
-    return self.life > 0
 
 def roll_initiative(player, enemy):
+    print("Roll iniative.")
     player_initiative = roll_dice(20)
     enemy_initiative = roll_dice(20)
     print(f"You roll {player_initiative}!")
@@ -17,7 +17,9 @@ def roll_initiative(player, enemy):
         return roll_initiative(player, enemy)
 
 
-def start_battle(turn_order):
+
+
+def start_battle(turn_order, player):
     first, second = turn_order
     current_turn_index = 0
     participants = [first, second]
@@ -37,7 +39,7 @@ def start_battle(turn_order):
             print(f"\n{defender.name} has been defeated!")
             if defender == player:
                 print(f"\n{player.name}, your quest ends here")
-                game_running = false
+                game_running = False
             break
 
         current_turn_index = 1 - current_turn_index
@@ -64,3 +66,7 @@ def magic_attack(attacker, defender):
     if attack > defender.protection:
         damage_dealt = attacker.weapon.damage
         defender.life -= damage_dealt
+
+def initiate_combat(player, enemy):
+    turn_order = roll_initiative(player, enemy)
+    start_battle(turn_order, player)

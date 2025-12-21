@@ -1,20 +1,20 @@
 from dice import roll_dice
 
 class Weapon:
-    def __init__(self, category, name, damage, hands, bonus=None):
+    def __init__(self, category, name, damage, hands, bonus):
         self.category = category
         self.name = name
         self.damage = damage
         self.hands = hands
         self.bonus = bonus
 
-unarmed = Weapon("melee", "unarmed", roll_dice(2), 1)
+unarmed = Weapon("melee", "unarmed", roll_dice(2), 1, 0)
 
-short_sword = Weapon("melee", "short sword", roll_dice(6), 1)
+short_sword = Weapon("melee", "short sword", roll_dice(6), 1, 0)
 
-short_bow = Weapon("ranged", "shortbow", roll_dice(6), 2)
+short_bow = Weapon("ranged", "shortbow", roll_dice(6), 2, 0)
 
-magic_staff = Weapon("magic", "magic staff", roll_dice(6), 2)
+magic_staff = Weapon("magic", "magic staff", roll_dice(6), 2, 0)
 
 long_bow = Weapon("ranged", "longbow", roll_dice(8), 2, 1)
 
@@ -24,21 +24,21 @@ fire_staff = Weapon("magic", "fire staff", roll_dice(20), 2, 5)
 
 great_axe = Weapon("melee", "great axe", roll_dice(10), 2, 2)
 
-hellhound_teeth = Weapon("melee", "hellhound teeth", roll_dice(10), 2)
+hellhound_teeth = Weapon("melee", "hellhound teeth", roll_dice(10), 2, 0)
 
 spear = Weapon("melee", "spear", roll_dice(8), 2, 1)
 
-psychic_blast = Weapon("magic", "psychic blast", roll_dice(12), 1)
+psychic_blast = Weapon("magic", "psychic blast", roll_dice(12), 1, 0)
 
 ghoul_claws = Weapon("melee", "ghoul claws", roll_dice(10), 2, 1)
 
-corrosive_spit = Weapon("ranged", "corrosive spit", roll_dice(12), 1)
+corrosive_spit = Weapon("ranged", "corrosive spit", roll_dice(12), 1, 0)
 
 spider_fangs = Weapon("melee", "spider fangs", roll_dice(12), 1, 1)
 
 huge_spiked_club = Weapon("melee", "huge spiked club", roll_dice(12), 2, 2)
 
-rat_bite = Weapon("melee", "rat bite", roll_dice(6), 1)
+rat_bite = Weapon("melee", "rat bite", roll_dice(6), 1, 0)
 
 deathly_touch = Weapon("magic", "deathly touch", roll_dice(12), 2, 2)
 

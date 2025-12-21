@@ -17,7 +17,6 @@ def start_new_game():
             print("Invalid input, please enter y or n.")
             continue
 
-
     
 
 
@@ -61,9 +60,9 @@ def intro(room_list, enemy_list, loot_list):
     print(f"{current_room.description}")
     print(f"In the room you see a {current_enemy.name} and a {current_loot.name}.")
     print(f"The {current_enemy.name} attacks!")
-    player_initiative, enemy_initiative = combat.roll_initiative(my_player, current_enemy)
-    
-    
+    #current_turn_order = combat.roll_initiative(my_player, current_enemy)
+    #current_fight = combat.start_battle(current_turn_order)
+    combat.initiate_combat(my_player, current_enemy)
 
 
 def main():
