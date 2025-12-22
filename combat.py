@@ -1,7 +1,7 @@
 from dice import roll_dice
 from main import main
 import characters
-
+import movement
 
 def roll_initiative(player, enemy):
     print("Roll iniative.")
@@ -37,43 +37,64 @@ def start_battle(turn_order, player):
             
         if not defender.is_alive():
             print(f"\n{defender.name} has been defeated!")
+            
             if defender == player:
                 print(f"\n{player.name}, your quest ends here")
                 game_running = False
-            break
+                break
+
+            elif defender != player:
+
+                current_loot = defender.loot
+                while True:
+                    
+                    loot_choice = input(f" To add {current_loot.name} to inventory, press 1, to equip it press 2, to leave it here, press 3. ")
+                    if loot_choice == '1':
+                        print(f"{current_loot.name} added to inventory")
+                        break
+                    elif loot_choice == '2':
+                        print(f"{current_loot.name} equipped")
+                        break
+                    elif loot_choice == '3':
+                        print(f"You leave the {current_loot.name} behind")
+                        break
+                    else:
+                        print("Invalid input, please enter 1, 2 or 3. ")
+            
+
 
         current_turn_index = 1 - current_turn_index
-
+    current_room, current_enemy, current_loot = movement.direction_choice()
 
 def melee_attack(attacker, defender):
     attack = roll_dice(20) + (attacker.weapon.bonus + attacker.melee_bonus)
-    print(f"{attacker} rolls {attack}")
+    print(f"{attacker.name} rolls {attack}")
     if attack > defender.protection:
         damage_dealt = attacker.weapon.damage
         defender.life -= damage_dealt
-        print(f"{defender} takes {damage_dealt} damage")
-        print(f"{defender} has {defender.life} life remaining")
+        print(f"{defender.name} takes {damage_dealt} damage")
+        print(f"{defender.name} has {defender.life} life remaining")
 
 
 
 
 def ranged_attack(attacker, defender):
     attack = roll_dice(20) + (attacker.weapon.bonus + attacker.ranged_bonus)
-    print(f"{attacker} rolls {attack}")
+    print(f"{attacker.name} rolls {attack}")
     if attack > defender.protection:
         damage_dealt = attacker.weapon.damage
         defender.life -= damage_dealt
-        print(f"{defender} takes {damage_dealt} damage")
-        print(f"{defender} has {defender.life} life remaining")
+        print(f"{defender.name} takes {damage_dealt} damage")
+        print(f"{defender.name} has {defender.life} life remaining")
 
 def magic_attack(attacker, defender):
     attack = roll_dice(20) + (attacker.weapon.bonus + attacker.magic_bonus)
-    print(f"{attacker} rolls {attack}")
+    print(f"{attacker.name} rolls {attack}")
     if attack > defender.protection:
         damage_dealt = attacker.weapon.damage
         defender.life -= damage_dealt
-        print(f"{defender} takes {damage_dealt} damage")
-        print(f"{defender} has {defender.life} life remaining")
+        print(f"{defender.name} takes {damage_dealt} damage")
+        print(f"{defender.name} has {defender.life} life remaining")
 
 def initiate_combat(player, enemy):
     turn_order = roll_initiative(player, enemy)

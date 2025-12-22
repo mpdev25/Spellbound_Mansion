@@ -3,7 +3,7 @@ import items
 
 
 class Character:
-    def __init__(self, name, life, protection, strength, dexterity, magic, weapon, inventory=None, equiped=None):
+    def __init__(self, name, life, protection, strength, dexterity, magic, weapon, inventory=None, equiped=None, loot = None):
         self.name = name
         self.life = life
         self.protection = protection
@@ -16,6 +16,7 @@ class Character:
         self.weapon = weapon
         self.inventory = inventory if inventory is not None else []
         self.equiped = equiped if equiped is not None else {}
+        self.loot = loot if loot is not None else []
 
     def is_alive(self):
         return self.life > 0
@@ -56,7 +57,7 @@ def roll_character():
     magic_bonus = magic // 6
 
     total_bonus = melee_bonus + ranged_bonus + magic_bonus
-    life = (roll_dice(20) + roll_dice(20)) // 2 + total_bonus
+    life = (roll_dice(20) + roll_dice(20)) // 2 + (total_bonus + 100)
     protection = roll_dice(6) + total_bonus
     name = "player"
     starting_weapon = items.unarmed

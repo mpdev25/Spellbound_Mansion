@@ -15,6 +15,7 @@ def direction_choice():
             direction = int(direction)
             if direction in [1, 2, 3]:
                 current_room, current_enemy, current_loot = draw_cards.draw_cards(room_list, enemy_list, loot_list)
+                current_enemy.loot = current_loot
                 return current_room, current_enemy, current_loot
             
             else:
