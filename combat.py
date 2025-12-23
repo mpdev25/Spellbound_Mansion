@@ -2,6 +2,7 @@ from dice import roll_dice
 from main import main
 import characters
 import movement
+import items
 
 def roll_initiative(player, enemy):
     print("Roll iniative.")
@@ -47,24 +48,38 @@ def start_battle(turn_order, player):
 
                 current_loot = defender.loot
                 while True:
-                    
-                    loot_choice = input(f" To add {current_loot.name} to inventory, press 1, to equip it press 2, to leave it here, press 3. ")
-                    if loot_choice == '1':
-                        print(f"{current_loot.name} added to inventory")
-                        break
-                    elif loot_choice == '2':
-                        print(f"{current_loot.name} equipped")
-                        break
-                    elif loot_choice == '3':
-                        print(f"You leave the {current_loot.name} behind")
-                        break
+                    if isinstance (current_loot, items.Treasure):
+                        loot_choice = input(f"To add {current_loot.name} to inventory, press 1, to leave it here, press 3. ")
+                        if loot_choice == '1':
+                            print(f"{current_loot.name} added to inventory")
+                            break
+                        elif loot_choice == '3':
+                            print(f"You leave the {current_loot.name} behind")
+                            break
                     else:
-                        print("Invalid input, please enter 1, 2 or 3. ")
+                        loot_choice = input(f"To add {current_loot.name} to inventory, press 1, to euip it, press 2, to leave it here, press 3. ")
+                        if loot_choice == '1':
+                            print(f"{current_loot.name} added to inventory")
+                            break
+                        elif loot_choice == '2':
+                            print(f"{current_loot.name} equipped")
+                            break
+                        elif loot_choice == '3':
+                            print(f"You leave the {current_loot.name} behind")
+                            break
+                        else:
+                            print("Invalid input, please enter 1, 2 or 3. ")
             
-
+                current_room, current_enemy, current_loot = movement.direction_choice()
+                print(f"You enter a {current_room.name}.")
+                print(f"{current_room.description}")
+                print(f"In the room you see a {current_enemy.name} and a {current_loot.name}.")
+                print(f"The {current_enemy.name} attacks!")
+    
+                initiate_combat(player, current_enemy)
 
         current_turn_index = 1 - current_turn_index
-    current_room, current_enemy, current_loot = movement.direction_choice()
+    
 
 def melee_attack(attacker, defender):
     attack = roll_dice(20) + (attacker.weapon.bonus + attacker.melee_bonus)
