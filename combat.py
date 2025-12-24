@@ -51,7 +51,9 @@ def start_battle(turn_order, player):
                     if isinstance (current_loot, items.Treasure):
                         loot_choice = input(f"To add {current_loot.name} to inventory, press 1, to leave it here, press 3. ")
                         if loot_choice == '1':
+                            player.inventory.append(current_loot)
                             print(f"{current_loot.name} added to inventory")
+                            print(f"Inventory {attacker.inventory}")
                             break
                         elif loot_choice == '3':
                             print(f"You leave the {current_loot.name} behind")
@@ -59,10 +61,28 @@ def start_battle(turn_order, player):
                     else:
                         loot_choice = input(f"To add {current_loot.name} to inventory, press 1, to euip it, press 2, to leave it here, press 3. ")
                         if loot_choice == '1':
+                            player.inventory.append(current_loot)
                             print(f"{current_loot.name} added to inventory")
+                            print(f"Inventory {attacker.inventory}")
                             break
                         elif loot_choice == '2':
-                            print(f"{current_loot.name} equipped")
+                            if isinstance (current_loot, items.Weapon):
+                                player.equipped['weapon'] = current_loot
+                                print(f"{current_loot.name} equipped")
+                                print(f"Equipped items: {attacker.equipped}")
+                            if isinstance (current_loot, items.Armour):
+                                if current_loot.category == "armour":
+                                    player.equipped['armour'] = current_loot
+                                    print(f"{current_loot.name} equipped")
+                                    print(f"Equipped items: {attacker.equipped}")
+                                if current_loot.category == "shield":
+                                    player.equipped['shield'] = current_loot
+                                    print(f"{current_loot.name} equipped")
+                                    print(f"Equipped items: {attacker.equipped}")
+                            if isinstance (current_loot, items.MagicItem):
+                                player.equipped['magic_item'] = current_loot
+                                print(f"{current_loot.name} equipped")
+                                print(f"Equipped items: {attacker.equipped}")
                             break
                         elif loot_choice == '3':
                             print(f"You leave the {current_loot.name} behind")

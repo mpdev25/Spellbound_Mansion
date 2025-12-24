@@ -49,6 +49,7 @@ def intro(room_list, enemy_list, loot_list):
     print("The next morning you collect the leather armour and head out to Katscurse mansion, a spring in your step adn a smile on your face -- treasue awaits!")
     my_player.inventory.append(items.leather_armour)
     characters.character_sheet(my_player)
+    
     print("After a twenty minute walk you reach the Katsscurse mansion. It is a large imposing building, but shows the signs of years of neglect. The entrance gate hangs listlessly on its hinges.")
     print("An overgrown path leads to a large oaken door.")
     print(locations.room_zero.description)

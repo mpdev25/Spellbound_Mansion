@@ -46,7 +46,7 @@ wand_of_destruction = Weapon("magic", "wand of destruction", roll_dice(20), 1, 3
 
 enhanced_longbow = Weapon("ranged", "enhanced longbow", roll_dice(12), 2, 2)
 
-expertly_crafted_longsword = Weapon("melee", "expertly crafter longsword", roll_dice(12), 1, 3)
+expertly_crafted_longsword = Weapon("melee", "expertly crafted longsword", roll_dice(12), 1, 3)
 
 great_sword = Weapon("melee", "great sword", roll_dice(12), 2, 3)
 
@@ -80,7 +80,7 @@ class MagicItem:
         self.protection = protection
              
 
-sorcerers_tome = MagicItem("tome of the sorcerer")
+
 
 healing_potion = MagicItem("healing potion", 5)
 
@@ -104,3 +104,5 @@ large_chest = Treasure("large chest of gold and jewels", 100)
 pouch = Treasure("pouch of diamonds", 75)
 
 sorcerers_horde = Treasure("the sorcerers hoard", 1000)
+
+sorcerers_tome = Treasure("tome of the sorcerer", 750)

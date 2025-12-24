@@ -3,7 +3,7 @@ import items
 
 
 class Character:
-    def __init__(self, name, life, protection, strength, dexterity, magic, weapon, inventory=None, equiped=None, loot = None):
+    def __init__(self, name, life, protection, strength, dexterity, magic, weapon, inventory=None, equipped=None, loot = None):
         self.name = name
         self.life = life
         self.protection = protection
@@ -15,7 +15,7 @@ class Character:
         self.magic_bonus = magic // 6
         self.weapon = weapon
         self.inventory = inventory if inventory is not None else []
-        self.equiped = equiped if equiped is not None else {}
+        self.equipped = equipped if equipped is not None else {'weapon': weapon, 'armour': None, 'Shield': None, 'magic_item': None}
         self.loot = loot if loot is not None else []
 
     def is_alive(self):
@@ -35,10 +35,11 @@ def __str__(self):
         f"Magic Bonus: {self.magic_bonus}\n"
         f"Weapon: {self.weapon}\n"
         f"Inventory: {self.inventory}\n"
-        f"Equiped: {self.equiped}")
+        f"Equipped: {self.equipped}"
+    )
 
 def character_sheet(player):
-    print(f"\n--- Character Sheet ---\n{str(player)}")
+    print(f"\n--- Character Sheet ---\n{player}")
 
 def get_player_name(player):
     print("\"You're new here, what's your name?\" says a man whose clothing reminds you all too much of your own impoverished upbringing.")
