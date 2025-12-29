@@ -3,7 +3,7 @@ import items
 
 
 class Character:
-    def __init__(self, name, life, protection, strength, dexterity, magic, weapon, inventory=None, equipped=None, loot = None):
+    def __init__(self, name, life, protection, strength, dexterity, magic, weapon, equipped=None, inventory=None, loot = None):
         self.name = name
         self.life = life
         self.protection = protection
@@ -15,8 +15,17 @@ class Character:
         self.magic_bonus = magic // 6
         self.weapon = weapon
         self.inventory = inventory if inventory is not None else []
-        self.equipped = equipped if equipped is not None else {'weapon': weapon, 'armour': None, 'Shield': None, 'magic_item': None}
         self.loot = loot if loot is not None else []
+
+        if equipped is not None:
+            self.equipped = equipped
+        else:
+            self.equipped = {
+                'Weapon': None,
+                'Armour': None,
+                'Shield': None,
+                'Magic Item': None
+            }
 
     def is_alive(self):
         return self.life > 0
@@ -90,6 +99,7 @@ def get_weapon(player):
                 player.weapon = items.short_sword
                 player.strength += roll_dice(6)
                 player.inventory.append(items.short_sword)
+                player.equipped['Weapon'] = items.short_sword
                 print("Short sword added to inventory")
                 break
             elif choice == 2:
@@ -97,6 +107,7 @@ def get_weapon(player):
                 player.weapon = items.short_bow
                 player.dexterity += roll_dice(6)
                 player.inventory.append(items.short_bow)
+                player.equipped['Weapon'] = items.short_bow
                 print("Short bow added to inventory")
                 break
             elif choice == 3:
@@ -104,6 +115,7 @@ def get_weapon(player):
                 player.weapon = items.magic_staff
                 player.magic += roll_dice(6)
                 player.inventory.append(items.magic_staff)
+                player.equipped['Weapon'] = items.magic_staff
                 print("Magic staff added to inventory")
                 break
             
@@ -116,51 +128,45 @@ def get_weapon(player):
 
 
 
-#def equip_weapon():
 
 
-#def equip_armour():
 
+goblin_sword = Character("goblin with a shortsword", 6, 6, 6, 6, 6, items.short_sword, items.short_sword)
 
-#def use_item():
+goblin_bow = Character("goblin with a shortbow", 6, 6, 6, 6, 6, items.short_bow, items.short_bow)
 
+skeleton_longbow = Character("skeleton with a longbow", 8, 10, 7, 12, 5, items.long_bow, items.long_bow)
 
-goblin_sword = Character("goblin with a shortsword", 6, 6, 6, 6, 6, items.short_sword)
+skeleton_sword = Character("skeleton with a longsword", 8, 10, 12, 7, 5, items.long_sword, items.long_sword)
 
-goblin_bow = Character("goblin with a shortbow", 6, 6, 6, 6, 6, items.short_bow)
+undead_sorcerer= Character("undead sorcerer", 20, 18, 12, 12, 18, items.fire_staff, items.fire_staff)
 
-skeleton_longbow = Character("skeleton with a longbow", 8, 10, 7, 12, 5, items.long_bow)
+orc_axe = Character("orc with a greataxe", 12, 12, 12, 12, 5, items.great_axe, items.great_axe)
 
-skeleton_sword = Character("skeleton with a longsword", 8, 10, 12, 7, 5, items.long_sword)
+hellhound = Character("hellhound", 14, 12, 18, 18, 8, items.hellhound_teeth, items.hellhound_teeth)
 
-undead_sorcerer= Character("undead sorcerer", 20, 18, 12, 12, 18, items.fire_staff)
+zombie_warrior = Character("zombie with a spear", 10, 12, 15, 14, 7, items.spear, items.spear)
 
-orc_axe = Character("orc with a greataxe", 12, 12, 12, 12, 5, items.great_axe)
+zombie_short_bow = Character("zombie with a shortbow", 10, 12, 14, 15, 7, items.short_bow, items.short_bow)
 
-hellhound = Character("hellhound", 14, 12, 18, 18, 8, items.hellhound_teeth)
+specter = Character("specter", 14, 14, 8, 12, 18, items.psychic_blast, items.psychic_blast)
 
-zombie_warrior = Character("zombie with a spear", 10, 12, 15, 14, 7, items.spear)
+ghoul = Character("ghoul", 12, 12, 16, 14, 12, items.ghoul_claws, items.ghoul_claws)
 
-zombie_short_bow = Character("zombie with a shortbow", 10, 12, 14, 15, 7, items.short_bow)
+animated_armour = Character("animated armour", 12, 18, 16, 12, 8, items.long_sword, items.long_sword)
 
-specter = Character("specter", 14, 14, 8, 12, 18, items.psychic_blast)
+shadow_lurker = Character("shadodw lurker", 14, 20, 10, 18, 18, items.corrosive_spit, items.corrosive_spit)
 
-ghoul = Character("ghoul", 12, 12, 16, 14, 12, items.ghoul_claws)
+giant_spider = Character("giant spider", 16, 14, 14, 16, 6, items.spider_fangs, items.spider_fangs)
 
-animated_armour = Character("animated armour", 12, 18, 16, 12, 8, items.long_sword)
+young_giant_spider = Character("young giant spider", 10, 10, 8, 10, 6, items.spider_fangs, items.spider_fangs)
 
-shadow_lurker = Character("shadodw lurker", 14, 20, 10, 18, 18, items.corrosive_spit)
+lost_bandit = Character("lost bandit", 12, 12, 12, 12, 12, items.short_sword, items.short_sword)
 
-giant_spider = Character("giant spider", 16, 14, 14, 16, 6, items.spider_fangs)
+orc_longbow = Character("orc with a longbow", 12, 12, 12, 12, 5, items.long_bow, items.long_bow)
 
-young_giant_spider = Character("young giant spider", 10, 10, 8, 10, 6, items.spider_fangs)
+ogre = Character("ogre with a huge spiked club", 18, 16, 18, 14, 8, items.huge_spiked_club, items.huge_spiked_club)
 
-lost_bandit = Character("lost bandit", 12, 12, 12, 12, 12, items.short_sword)
+horde_of_rats = Character("horde of rats", 20, 10, 6, 12, 2, items.rat_bite, items.rat_bite)
 
-orc_longbow = Character("orc with a longbow", 12, 12, 12, 12, 5, items.long_bow)
-
-ogre = Character("ogre with a huge spiked club", 18, 16, 18, 14, 8, items.huge_spiked_club)
-
-horde_of_rats = Character("horde of rats", 20, 10, 6, 12, 2, items.rat_bite)
-
-lich = Character("lich", 20, 20, 18, 12, 18, items.deathly_touch)
+lich = Character("lich", 20, 20, 18, 12, 18, items.deathly_touch, items.deathly_touch)

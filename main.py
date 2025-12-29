@@ -46,11 +46,14 @@ def intro(room_list, enemy_list, loot_list):
     print("The man looks at you thoughtfully for a moment, studying the keen interest in the mansion that the look on your face betrays.")
     print("Finally he lets out a sigh and exclaims \"I can see you are an unwise person. At least wait till the morning and I will give you my old fathers leather armour. I doubt it will help much, but better than nothing perhaps.\"")
     print(".......")
-    print("The next morning you collect the leather armour and head out to Katscurse mansion, a spring in your step adn a smile on your face -- treasue awaits!")
+    print("The next morning you collect the leather armour and head out to Katscurse mansion, a spring in your step and a smile on your face -- treasure awaits!")
     my_player.inventory.append(items.leather_armour)
-    characters.character_sheet(my_player)
-    
-    print("After a twenty minute walk you reach the Katsscurse mansion. It is a large imposing building, but shows the signs of years of neglect. The entrance gate hangs listlessly on its hinges.")
+    print(f"{my_player.inventory}")
+    my_player.equipped['Armour'] = {items.leather_armour}
+    print(my_player.equipped)
+   # characters.character_sheet({my_player})
+    print(my_player.__str__())
+    print("After a twenty minute walk you reach the Katsscurse mansion. It is a large imposing building, but shows the signs of years of neglect.\nThe entrance gate hangs listlessly on its hinges.")
     print("An overgrown path leads to a large oaken door.")
     print(locations.room_zero.description)
 

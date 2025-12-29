@@ -1,64 +1,76 @@
-from dice import roll_dice
+
+import dice
+
 
 class Weapon:
-    def __init__(self, category, name, damage, hands, bonus):
+    def __init__(self, category, name, dice, damage_roll, hands, bonus):
         self.category = category
         self.name = name
-        self.damage = damage
+        self.dice = dice
+        self.damage_roll = damage_roll
         self.hands = hands
         self.bonus = bonus
 
-unarmed = Weapon("melee", "unarmed", roll_dice(2), 1, 0)
+    def __str__(self):
+        return f"{self.name} (Damage: {self.dice})"
 
-short_sword = Weapon("melee", "short sword", roll_dice(6), 1, 0)
+   
 
-short_bow = Weapon("ranged", "shortbow", roll_dice(6), 2, 0)
 
-magic_staff = Weapon("magic", "magic staff", roll_dice(6), 2, 0)
+unarmed = Weapon("melee", "unarmed", "d2", dice.roll_d2, 1, 0)
 
-long_bow = Weapon("ranged", "longbow", roll_dice(8), 2, 1)
+short_sword = Weapon("melee", "short sword", "d6", dice.roll_d6, 1, 0)
 
-long_sword = Weapon("melee", "long sword", roll_dice(8), 1, 1)
+short_bow = Weapon("ranged", "shortbow", "d6", dice.roll_d6, 2, 0)
 
-fire_staff = Weapon("magic", "fire staff", roll_dice(20), 2, 5)
+magic_staff = Weapon("magic", "magic staff", "d6", dice.roll_d6, 2, 0)
 
-great_axe = Weapon("melee", "great axe", roll_dice(10), 2, 2)
+long_bow = Weapon("ranged", "longbow", "d8", dice.roll_d8, 2, 1)
 
-hellhound_teeth = Weapon("melee", "hellhound teeth", roll_dice(10), 2, 0)
+long_sword = Weapon("melee", "long sword", "d8", dice.roll_d8, 1, 1)
 
-spear = Weapon("melee", "spear", roll_dice(8), 2, 1)
+fire_staff = Weapon("magic", "fire staff", "d20", dice.roll_d20, 2, 5)
 
-psychic_blast = Weapon("magic", "psychic blast", roll_dice(12), 1, 0)
+great_axe = Weapon("melee", "great axe", "d10", dice.roll_d10, 2, 2)
 
-ghoul_claws = Weapon("melee", "ghoul claws", roll_dice(10), 2, 1)
+hellhound_teeth = Weapon("melee", "hellhound teeth", "d10", dice.roll_d10, 2, 0)
 
-corrosive_spit = Weapon("ranged", "corrosive spit", roll_dice(12), 1, 0)
+spear = Weapon("melee", "spear", "d8", dice.roll_d8, 2, 1)
 
-spider_fangs = Weapon("melee", "spider fangs", roll_dice(12), 1, 1)
+psychic_blast = Weapon("magic", "psychic blast", "d12", dice.roll_d12, 1, 0)
 
-huge_spiked_club = Weapon("melee", "huge spiked club", roll_dice(12), 2, 2)
+ghoul_claws = Weapon("melee", "ghoul claws", "d10", dice.roll_d10, 2, 1)
 
-rat_bite = Weapon("melee", "rat bite", roll_dice(6), 1, 0)
+corrosive_spit = Weapon("ranged", "corrosive spit", "d12", dice.roll_d12, 1, 0)
 
-deathly_touch = Weapon("magic", "deathly touch", roll_dice(12), 2, 2)
+spider_fangs = Weapon("melee", "spider fangs", "d12", dice.roll_d12, 1, 1)
 
-wand_of_destruction = Weapon("magic", "wand of destruction", roll_dice(20), 1, 3)
+huge_spiked_club = Weapon("melee", "huge spiked club", "d12", dice.roll_d12, 2, 2)
 
-enhanced_longbow = Weapon("ranged", "enhanced longbow", roll_dice(12), 2, 2)
+rat_bite = Weapon("melee", "rat bite", "d6", dice.roll_d6, 1, 0)
 
-expertly_crafted_longsword = Weapon("melee", "expertly crafted longsword", roll_dice(12), 1, 3)
+deathly_touch = Weapon("magic", "deathly touch", "d12", dice.roll_d12, 2, 2)
 
-great_sword = Weapon("melee", "great sword", roll_dice(12), 2, 3)
+wand_of_destruction = Weapon("magic", "wand of destruction", "d20", dice.roll_d20, 1, 3)
 
-heavy_crossbow = Weapon("ranged", "heavy crossbow", roll_dice(12), 2, 3)
+enhanced_longbow = Weapon("ranged", "enhanced longbow", "d12", dice.roll_d12, 2, 2)
 
-staff_of_light = Weapon("magic", "staff of light", roll_dice(12), 2, 3)
+expertly_crafted_longsword = Weapon("melee", "expertly crafted longsword", "d12", dice.roll_d12, 1, 3)
+
+great_sword = Weapon("melee", "great sword", "d12", dice.roll_d12, 2, 3)
+
+heavy_crossbow = Weapon("ranged", "heavy crossbow", "d12", dice.roll_d12, 2, 3)
+
+staff_of_light = Weapon("magic", "staff of light", "d12", dice.roll_d12, 2, 3)
 
 class Armour:
     def __init__(self, category, name, protection):
         self.category = category
         self.name = name
         self.protection = protection
+
+    def __str__(self):
+        return f"{self.name} (Protection: {self.protection})"
         
 
 leather_armour = Armour("armour", "leather armour", 2)
@@ -79,7 +91,8 @@ class MagicItem:
         self.life = life
         self.protection = protection
              
-
+    def __str__(self):
+        return f"{self.name} (Life: {self.life} Protection: {self.protection})"
 
 
 healing_potion = MagicItem("healing potion", 5)
@@ -94,6 +107,9 @@ class Treasure:
     def __init__(self, name, value):
         self.name = name
         self.value = value
+
+    def __str__(self):
+        return f"{self.name} (Value: {self.value})"
 
 giant_ruby = Treasure("giant ruby", 50)
 

@@ -67,21 +67,22 @@ def start_battle(turn_order, player):
                             break
                         elif loot_choice == '2':
                             if isinstance (current_loot, items.Weapon):
-                                player.equipped['weapon'] = current_loot
-                                print(f"{current_loot.name} equipped")
+                                player.equipped['Weapon'] = current_loot
+                                player.weapon = current_loot
+                                print(f"{current_loot} equipped")
                                 print(f"Equipped items: {attacker.equipped}")
                             if isinstance (current_loot, items.Armour):
                                 if current_loot.category == "armour":
-                                    player.equipped['armour'] = current_loot
-                                    print(f"{current_loot.name} equipped")
+                                    player.equipped['Armour'] = current_loot
+                                    print(f"{current_loot} equipped")
                                     print(f"Equipped items: {attacker.equipped}")
                                 if current_loot.category == "shield":
-                                    player.equipped['shield'] = current_loot
-                                    print(f"{current_loot.name} equipped")
+                                    player.equipped['Shield'] = current_loot
+                                    print(f"{current_loot} equipped")
                                     print(f"Equipped items: {attacker.equipped}")
                             if isinstance (current_loot, items.MagicItem):
-                                player.equipped['magic_item'] = current_loot
-                                print(f"{current_loot.name} equipped")
+                                player.equipped['Magic Item'] = current_loot
+                                print(f"{current_loot} equipped")
                                 print(f"Equipped items: {attacker.equipped}")
                             break
                         elif loot_choice == '3':
@@ -102,34 +103,39 @@ def start_battle(turn_order, player):
     
 
 def melee_attack(attacker, defender):
+    print(f"{attacker.name} attacks with {attacker.weapon}.")
     attack = roll_dice(20) + (attacker.weapon.bonus + attacker.melee_bonus)
-    print(f"{attacker.name} rolls {attack}")
+    
+    print(f"{attacker.name} attack roll: {attack}")
     if attack > defender.protection:
-        damage_dealt = attacker.weapon.damage
+        damage_dealt = attacker.weapon.damage_roll()
         defender.life -= damage_dealt
         print(f"{defender.name} takes {damage_dealt} damage")
         print(f"{defender.name} has {defender.life} life remaining")
-
-
+        
 
 
 def ranged_attack(attacker, defender):
+    print(f"{attacker.name} attacks with {attacker.weapon}.")
     attack = roll_dice(20) + (attacker.weapon.bonus + attacker.ranged_bonus)
-    print(f"{attacker.name} rolls {attack}")
+    print(f"{attacker.name} attack roll: {attack}")
     if attack > defender.protection:
-        damage_dealt = attacker.weapon.damage
+        damage_dealt = attacker.weapon.damage_roll()
         defender.life -= damage_dealt
         print(f"{defender.name} takes {damage_dealt} damage")
         print(f"{defender.name} has {defender.life} life remaining")
+        
 
 def magic_attack(attacker, defender):
+    print(f"{attacker.name} attacks with {attacker.weapon}.")
     attack = roll_dice(20) + (attacker.weapon.bonus + attacker.magic_bonus)
-    print(f"{attacker.name} rolls {attack}")
+    print(f"{attacker.name} attack roll: {attack}")
     if attack > defender.protection:
-        damage_dealt = attacker.weapon.damage
+        damage_dealt = attacker.weapon.damage_roll()
         defender.life -= damage_dealt
         print(f"{defender.name} takes {damage_dealt} damage")
         print(f"{defender.name} has {defender.life} life remaining")
+        
 
 def initiate_combat(player, enemy):
     turn_order = roll_initiative(player, enemy)
