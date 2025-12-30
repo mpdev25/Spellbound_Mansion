@@ -56,17 +56,28 @@ def intro(room_list, enemy_list, loot_list):
     print("After a twenty minute walk you reach the Katsscurse mansion. It is a large imposing building, but shows the signs of years of neglect.\nThe entrance gate hangs listlessly on its hinges.")
     print("An overgrown path leads to a large oaken door.")
     print(locations.room_zero.description)
+    return my_player
 
-    current_room, current_enemy, current_loot = movement.direction_choice()
+def play_game(my_player, room_list, enemy_list, loot_list):
     
-
+    current_room, current_enemy, current_loot = movement.direction_choice()
+   
     print(f"You enter a {current_room.name}.")
     print(f"{current_room.description}")
     print(f"In the room you see a {current_enemy.name} and a {current_loot.name}.")
     print(f"The {current_enemy.name} attacks!")
-    #current_turn_order = combat.roll_initiative(my_player, current_enemy)
-    #current_fight = combat.start_battle(current_turn_order)
+    
     combat.initiate_combat(my_player, current_enemy)
+
+    if not my_player.is_alive():
+        print("You end just another victim of Katscurse Mansion.")
+        game_running = False
+    
+   
+    
+    else:
+        return play_game(my_player, room_list, enemy_list, loot_list)
+
 
 
 def main():
@@ -77,7 +88,8 @@ def main():
     loot_list = [items.wand_of_destruction, items.enhanced_longbow, items.expertly_crafted_longsword, items.great_sword, items.heavy_crossbow, items.staff_of_light, items.sorcerers_tome, items.healing_potion, items.greater_healing_potion, items.potion_of_stone_skin, items.shield_scroll, items.giant_ruby, items.small_chest, items.large_chest, items.pouch, items.sorcerers_horde, items.chainmail_armour, items.plate_armour, items.robe_of_protection, items.small_shield, items.large_shield]
     game_running = True
     while game_running:
-        game_state = intro(room_list, enemy_list, loot_list) 
+        my_player = intro(room_list, enemy_list, loot_list)
+        game_state = play_game(my_player, room_list, enemy_list, loot_list) 
         game_running = start_new_game()
 
 

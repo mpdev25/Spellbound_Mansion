@@ -4,6 +4,10 @@ import characters
 import movement
 import items
 
+def initiate_combat(player, enemy):
+    turn_order = roll_initiative(player, enemy)
+    start_battle(turn_order, player)
+
 def roll_initiative(player, enemy):
     print("Roll iniative.")
     player_initiative = roll_dice(20)
@@ -27,6 +31,7 @@ def start_battle(turn_order, player):
     while first.is_alive() and second.is_alive():
         attacker = participants[current_turn_index]
         defender = participants[1 - current_turn_index]
+       
         weapon_category = attacker.weapon.category
         
         if weapon_category == "melee":
@@ -41,7 +46,7 @@ def start_battle(turn_order, player):
             
             if defender == player:
                 print(f"\n{player.name}, your quest ends here")
-                game_running = False
+                main.game_running = False
                 break
 
             elif defender != player:
@@ -49,6 +54,13 @@ def start_battle(turn_order, player):
                 current_loot = defender.loot
                 while True:
                     if isinstance (current_loot, items.Treasure):
+                        if current_loot.name == "tome of the sorcerer.":
+                            print("The tome contains many spells, but of particular interest is a teleportation spell you could use to leave the mansion.")
+                            escape = input("Press t to teleport out of the mansion. You can also press t later if you do not wish to leave now. ").lower()
+                            if escape == 't':
+                                print("You use the spell in the sorcerers tome to teleport yourself out of Katscurse Mansion.\nCongratulations, you have survived!")
+                                main.game_running = False
+                                break
                         loot_choice = input(f"To add {current_loot.name} to inventory, press 1, to leave it here, press 3. ")
                         if loot_choice == '1':
                             player.inventory.append(current_loot)
@@ -58,6 +70,9 @@ def start_battle(turn_order, player):
                         elif loot_choice == '3':
                             print(f"You leave the {current_loot.name} behind")
                             break
+                        else:
+                            print("Invalid input. Please enter 1 or 3")
+                            continue
                     else:
                         loot_choice = input(f"To add {current_loot.name} to inventory, press 1, to euip it, press 2, to leave it here, press 3. ")
                         if loot_choice == '1':
@@ -66,21 +81,22 @@ def start_battle(turn_order, player):
                             print(f"Inventory {attacker.inventory}")
                             break
                         elif loot_choice == '2':
+                                        
                             if isinstance (current_loot, items.Weapon):
                                 player.equipped['Weapon'] = current_loot
                                 player.weapon = current_loot
                                 print(f"{current_loot} equipped")
                                 print(f"Equipped items: {attacker.equipped}")
-                            if isinstance (current_loot, items.Armour):
+                            elif isinstance (current_loot, items.Armour):
                                 if current_loot.category == "armour":
                                     player.equipped['Armour'] = current_loot
                                     print(f"{current_loot} equipped")
                                     print(f"Equipped items: {attacker.equipped}")
-                                if current_loot.category == "shield":
+                                elif current_loot.category == "shield":
                                     player.equipped['Shield'] = current_loot
                                     print(f"{current_loot} equipped")
                                     print(f"Equipped items: {attacker.equipped}")
-                            if isinstance (current_loot, items.MagicItem):
+                            elif isinstance (current_loot, items.MagicItem):
                                 player.equipped['Magic Item'] = current_loot
                                 print(f"{current_loot} equipped")
                                 print(f"Equipped items: {attacker.equipped}")
@@ -90,7 +106,9 @@ def start_battle(turn_order, player):
                             break
                         else:
                             print("Invalid input, please enter 1, 2 or 3. ")
-            
+                            continue
+                    break
+
                 current_room, current_enemy, current_loot = movement.direction_choice()
                 print(f"You enter a {current_room.name}.")
                 print(f"{current_room.description}")
@@ -137,6 +155,4 @@ def magic_attack(attacker, defender):
         print(f"{defender.name} has {defender.life} life remaining")
         
 
-def initiate_combat(player, enemy):
-    turn_order = roll_initiative(player, enemy)
-    start_battle(turn_order, player)
+

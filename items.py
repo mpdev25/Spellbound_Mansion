@@ -121,4 +121,4 @@ pouch = Treasure("pouch of diamonds", 75)
 
 sorcerers_horde = Treasure("the sorcerers hoard", 1000)
 
-sorcerers_tome = Treasure("tome of the sorcerer", 750)
+sorcerers_tome = Treasure("tome of the sorcerer.", 750)
