@@ -12,7 +12,7 @@ class Weapon:
         self.bonus = bonus
 
     def __str__(self):
-        return f"{self.name} (Damage: {self.dice})"
+        return f"({self.name} Damage: {self.dice})"
 
    
 
@@ -70,7 +70,7 @@ class Armour:
         self.protection = protection
 
     def __str__(self):
-        return f"{self.name} (Protection: {self.protection})"
+        return f"({self.name} Protection: {self.protection})"
         
 
 leather_armour = Armour("armour", "leather armour", 2)
@@ -92,7 +92,7 @@ class MagicItem:
         self.protection = protection
              
     def __str__(self):
-        return f"{self.name} (Life: {self.life} Protection: {self.protection})"
+        return f"({self.name} Life: {self.life} Protection: {self.protection})"
 
 
 healing_potion = MagicItem("healing potion", 5)
@@ -109,7 +109,7 @@ class Treasure:
         self.value = value
 
     def __str__(self):
-        return f"{self.name} (Value: {self.value})"
+        return f"({self.name} Value: {self.value})"
 
 giant_ruby = Treasure("giant ruby", 50)
 

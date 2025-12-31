@@ -1,3 +1,5 @@
+
+from pynput import keyboard
 from dice import roll_dice
 import characters
 import combat
@@ -5,6 +7,25 @@ import items
 import locations
 import draw_cards
 import movement
+
+game_running = True
+def on_key_press(key):
+    global game_running
+    try:
+        if key.char == 'q':
+            print("Exiting game...")
+            game_running = False
+            return False
+      
+        if key.char == 't':
+            print("You use the teleport spell in the sorcerers tome to escape Katscurse Mansion.\nTime to check your loot!")
+            game_running = False
+            return False
+    except AttributeError:
+        pass
+
+listener = keyboard.Listener(on_key_press=on_key_press)
+listener.start()
 
 def start_new_game():
     while True:
@@ -49,9 +70,9 @@ def intro(room_list, enemy_list, loot_list):
     print("The next morning you collect the leather armour and head out to Katscurse mansion, a spring in your step and a smile on your face -- treasure awaits!")
     my_player.inventory.append(items.leather_armour)
     print(f"{my_player.inventory}")
-    my_player.equipped['Armour'] = {items.leather_armour}
+    my_player.equipped['Armour'] = (items.leather_armour)
     print(my_player.equipped)
-   # characters.character_sheet({my_player})
+    characters.character_sheet(my_player)
     print(my_player.__str__())
     print("After a twenty minute walk you reach the Katsscurse mansion. It is a large imposing building, but shows the signs of years of neglect.\nThe entrance gate hangs listlessly on its hinges.")
     print("An overgrown path leads to a large oaken door.")
@@ -87,12 +108,16 @@ def main():
 
     loot_list = [items.wand_of_destruction, items.enhanced_longbow, items.expertly_crafted_longsword, items.great_sword, items.heavy_crossbow, items.staff_of_light, items.sorcerers_tome, items.healing_potion, items.greater_healing_potion, items.potion_of_stone_skin, items.shield_scroll, items.giant_ruby, items.small_chest, items.large_chest, items.pouch, items.sorcerers_horde, items.chainmail_armour, items.plate_armour, items.robe_of_protection, items.small_shield, items.large_shield]
     game_running = True
+    
     while game_running:
-        my_player = intro(room_list, enemy_list, loot_list)
-        game_state = play_game(my_player, room_list, enemy_list, loot_list) 
-        game_running = start_new_game()
-
-
+        try:
+            my_player = intro(room_list, enemy_list, loot_list)
+            game_state = play_game(my_player, room_list, enemy_list, loot_list) 
+            game_running = start_new_game()
+        except KeyboardInterrupt:
+            break
+    
+    
 
 if __name__ == "__main__":
     main()

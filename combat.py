@@ -10,16 +10,17 @@ def initiate_combat(player, enemy):
 
 def roll_initiative(player, enemy):
     print("Roll iniative.")
-    player_initiative = roll_dice(20)
-    enemy_initiative = roll_dice(20)
-    print(f"You roll {player_initiative}!")
-    print(f"{enemy.name} rolls {enemy_initiative}!")
-    if player_initiative > enemy_initiative:
-        return [player, enemy]
-    elif enemy_initiative > player_initiative:
-        return [enemy, player]
-    else:
-        return roll_initiative(player, enemy)
+    while True:
+        player_initiative = roll_dice(20)
+        enemy_initiative = roll_dice(20)
+        print(f"You roll {player_initiative}!")
+        print(f"{enemy.name} rolls {enemy_initiative}!")
+        if player_initiative > enemy_initiative:
+            return [player, enemy]
+        elif enemy_initiative > player_initiative:
+            return [enemy, player]
+        else:
+            print("A tie! Rolling again...")
 
 
 
@@ -60,7 +61,7 @@ def start_battle(turn_order, player):
                             if escape == 't':
                                 print("You use the spell in the sorcerers tome to teleport yourself out of Katscurse Mansion.\nCongratulations, you have survived!")
                                 main.game_running = False
-                                break
+                                return
                         loot_choice = input(f"To add {current_loot.name} to inventory, press 1, to leave it here, press 3. ")
                         if loot_choice == '1':
                             player.inventory.append(current_loot)
