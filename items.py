@@ -1,6 +1,6 @@
 
 import dice
-
+import characters
 
 class Weapon:
     def __init__(self, category, name, dice, damage_roll, hands, bonus):

@@ -30,22 +30,36 @@ class Character:
     def is_alive(self):
         return self.life > 0
 
+    def display_items(self, item_dict_or_list):
+        if isinstance(item_dict_or_list, dict):
+            lines = []
+            for slot, item in item_dict_or_list.items():
+                item_name = item.name if item is not None else 'None'
+                lines.append(f" {slot}: {item_name}")
+            return "\n".join(lines)
+        elif isinstance(item_dict_or_list, list):
+            if not item_dict_or_list:
+                return " None"
+            return "\n".join([f" - {item.name}" for item in item_dict_or_list])
+        else:
+            return str(item_dict_or_list)
 
-def __str__(self):
-    return (
-        f"Character: {self.name}\n"
-        f"Life: {self.life}\n"
-        f"Protection: {self.protection}\n"
-        f"Strength: {self.strength}\n"
-        f"Dexterity: {self.dexterity}\n"
-        f"Magic: {self.magic}\n"
-        f"Melee Bonus: {self.melee_bonus}\n"
-        f"Ranged Bonus: {self.ranged_bonus}\n"
-        f"Magic Bonus: {self.magic_bonus}\n"
-        f"Weapon: {self.weapon}\n"
-        f"Inventory: {self.inventory}\n"
-        f"Equipped: {self.equipped}"
-    )
+    def __str__(self):
+        return (
+            f"Character: {self.name}\n"
+            f"Life: {self.life}\n"
+            f"Protection: {self.protection}\n"
+            f"Strength: {self.strength}\n"
+            f"Dexterity: {self.dexterity}\n"
+            f"Magic: {self.magic}\n"
+            f"Melee Bonus: {self.melee_bonus}\n"
+            f"Ranged Bonus: {self.ranged_bonus}\n"
+            f"Magic Bonus: {self.magic_bonus}\n"
+            f"Weapon: {self.weapon}\n"
+            f"Inventory: \n{self.display_items(self.inventory)}\n"
+            f"Equipped: \n{self.display_items(self.equipped)}\n"
+            f"Loot: \n{self.display_items(self.loot)}"
+        )
 
 def character_sheet(player):
     print(f"\n--- Character Sheet ---\n{player}")

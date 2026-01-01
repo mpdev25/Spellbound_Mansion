@@ -1,5 +1,5 @@
 
-from pynput import keyboard
+
 from dice import roll_dice
 import characters
 import combat
@@ -8,31 +8,34 @@ import locations
 import draw_cards
 import movement
 
-game_running = True
-def on_key_press(key):
-    global game_running
-    try:
-        if key.char == 'q':
-            print("Exiting game...")
-            game_running = False
-            return False
+
+def check_global_commands(user_input, my_player,  game_state=True):
+    if user_input == 'q':
+        print("Exiting game...")
+        return False, False
+            
       
-        if key.char == 't':
-            print("You use the teleport spell in the sorcerers tome to escape Katscurse Mansion.\nTime to check your loot!")
-            game_running = False
-            return False
-    except AttributeError:
-        pass
+    if user_input == 't':
+        print("You use the teleport spell in the sorcerers tome to escape Katscurse Mansion.\nTime to check your loot!")
+        return False, False
 
-listener = keyboard.Listener(on_key_press=on_key_press)
-listener.start()
+    if user_input == 'c':
+        characters.character_sheet(my_player)
+        return True, True
+    return False, True
+       
 
-def start_new_game():
+
+
+def start_new_game(my_player):
     while True:
         user_input = input("Start a new game? y/n ").lower()
+        if not check_global_commands(user_input, my_player):
+            return False
         if user_input == "y":
             return True
         if user_input == "n":
+            print("Exiting game.")
             return False
         else:
             print("Invalid input, please enter y or n.")
@@ -51,7 +54,7 @@ def intro(room_list, enemy_list, loot_list):
 
     print("1 Melee combat")
     print("2 Ranged combat")
-    print("3 magic combat")
+    print("3 Magic combat")
 
     characters.get_weapon(my_player)
     
@@ -69,18 +72,28 @@ def intro(room_list, enemy_list, loot_list):
     print(".......")
     print("The next morning you collect the leather armour and head out to Katscurse mansion, a spring in your step and a smile on your face -- treasure awaits!")
     my_player.inventory.append(items.leather_armour)
-    print(f"{my_player.inventory}")
+    
+   
     my_player.equipped['Armour'] = (items.leather_armour)
-    print(my_player.equipped)
+  
     characters.character_sheet(my_player)
-    print(my_player.__str__())
+   
     print("After a twenty minute walk you reach the Katsscurse mansion. It is a large imposing building, but shows the signs of years of neglect.\nThe entrance gate hangs listlessly on its hinges.")
     print("An overgrown path leads to a large oaken door.")
     print(locations.room_zero.description)
     return my_player
 
 def play_game(my_player, room_list, enemy_list, loot_list):
-    
+    game_running = True
+    while True:
+        user_input = input(f"What do you want to do?\nType q to quit\nc to view character sheet ")
+        command_handled, game_running = check_global_commands(user_input, my_player, game_running)
+        if command_handled:
+            continue
+        else:
+            game_running = False
+            break
+    movement.direction_choice()
     current_room, current_enemy, current_loot = movement.direction_choice()
    
     print(f"You enter a {current_room.name}.")
@@ -113,7 +126,7 @@ def main():
         try:
             my_player = intro(room_list, enemy_list, loot_list)
             game_state = play_game(my_player, room_list, enemy_list, loot_list) 
-            game_running = start_new_game()
+            game_running = start_new_game(my_player)
         except KeyboardInterrupt:
             break
     
