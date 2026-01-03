@@ -1,5 +1,5 @@
 from dice import roll_dice
-from main import main
+from main import stop_game, start_new_game, should_run
 import characters
 import movement
 import items
@@ -44,82 +44,154 @@ def start_battle(turn_order, player):
             
         if not defender.is_alive():
             print(f"\n{defender.name} has been defeated!")
+            check_defender_state(player, defender)
             
-            if defender == player:
-                print(f"\n{player.name}, your quest ends here")
-                main.game_running = False
-                break
+ #           if defender == player:
+  #              print(f"\n{player.name}, your quest ends here")
+   #             stop_game()
+               # break
 
-            elif defender != player:
+    #        elif defender != player:
 
-                current_loot = defender.loot
-                while True:
-                    if isinstance (current_loot, items.Treasure):
-                        if current_loot.name == "tome of the sorcerer.":
-                            print("The tome contains many spells, but of particular interest is a teleportation spell you could use to leave the mansion.")
-                            escape = input("Press t to teleport out of the mansion. You can also press t later if you do not wish to leave now. ").lower()
-                            if escape == 't':
-                                print("You use the spell in the sorcerers tome to teleport yourself out of Katscurse Mansion.\nCongratulations, you have survived!")
-                                main.game_running = False
-                                return
-                        loot_choice = input(f"To add {current_loot.name} to inventory, press 1, to leave it here, press 3. ")
-                        if loot_choice == '1':
-                            player.inventory.append(current_loot)
-                            print(f"{current_loot.name} added to inventory")
-                            print(f"Inventory {attacker.inventory}")
-                            break
-                        elif loot_choice == '3':
-                            print(f"You leave the {current_loot.name} behind")
-                            break
-                        else:
-                            print("Invalid input. Please enter 1 or 3")
-                            continue
-                    else:
-                        loot_choice = input(f"To add {current_loot.name} to inventory, press 1, to euip it, press 2, to leave it here, press 3. ")
-                        if loot_choice == '1':
-                            player.inventory.append(current_loot)
-                            print(f"{current_loot.name} added to inventory")
-                            print(f"Inventory {attacker.inventory}")
-                            break
-                        elif loot_choice == '2':
+     #           current_loot = defender.loot
+       #         while True:
+        #            if isinstance (current_loot, items.Treasure):
+         #               if current_loot.name == "tome of the sorcerer.":
+          #                  print("The tome contains many spells, but of particular interest is a teleportation spell you could use to leave the mansion.")
+       #                     escape = input("Press t to teleport out of the mansion. You can also press t later if you do not wish to leave now. ").lower()
+        #                    if escape == 't':
+         #                       print("You use the spell in the sorcerers tome to teleport yourself out of Katscurse Mansion.\nCongratulations, you have survived!")
+          #                      main.game_running = False
+          #                      return
+           #             loot_choice = input(f"To add {current_loot.name} to inventory, press 1, to leave it here, press 3. ")
+         #               if loot_choice == '1':
+          #                  player.inventory.append(current_loot)
+           #                 print(f"{current_loot.name} added to inventory")
+          #                  print(f"Inventory {attacker.inventory}")
+          #                  break
+           #             elif loot_choice == '3':
+            #                print(f"You leave the {current_loot.name} behind")
+            #                break
+             #           else:
+              #              print("Invalid input. Please enter 1 or 3")
+              #              continue
+              #      else:
+               #         loot_choice = input(f"To add {current_loot.name} to inventory, press 1, to euip it, press 2, to leave it here, press 3. ")
+                #        if loot_choice == '1':
+                 #           player.inventory.append(current_loot)
+                 #           print(f"{current_loot.name} added to inventory")
+                  #          print(f"Inventory {attacker.inventory}")
+                   #         break
+             #           elif loot_choice == '2':
                                         
-                            if isinstance (current_loot, items.Weapon):
-                                player.equipped['Weapon'] = current_loot
-                                player.weapon = current_loot
-                                print(f"{current_loot} equipped")
-                                print(f"Equipped items: {attacker.equipped}")
-                            elif isinstance (current_loot, items.Armour):
-                                if current_loot.category == "armour":
-                                    player.equipped['Armour'] = current_loot
-                                    print(f"{current_loot} equipped")
-                                    print(f"Equipped items: {attacker.equipped}")
-                                elif current_loot.category == "shield":
-                                    player.equipped['Shield'] = current_loot
-                                    print(f"{current_loot} equipped")
-                                    print(f"Equipped items: {attacker.equipped}")
-                            elif isinstance (current_loot, items.MagicItem):
-                                player.equipped['Magic Item'] = current_loot
-                                print(f"{current_loot} equipped")
-                                print(f"Equipped items: {attacker.equipped}")
-                            break
-                        elif loot_choice == '3':
-                            print(f"You leave the {current_loot.name} behind")
-                            break
-                        else:
-                            print("Invalid input, please enter 1, 2 or 3. ")
-                            continue
-                    break
+              #              if isinstance (current_loot, items.Weapon):
+               #                 player.equipped['Weapon'] = current_loot
+                #                player.weapon = current_loot
+                 #               print(f"{current_loot} equipped")
+                  #              print(f"Equipped items: {attacker.equipped}")
+                   #         elif isinstance (current_loot, items.Armour):
+                    #            if current_loot.category == "armour":
+                    #                player.equipped['Armour'] = current_loot
+                     #               print(f"{current_loot} equipped")
+                      #              print(f"Equipped items: {attacker.equipped}")
+                       #         elif current_loot.category == "shield":
+                    #                player.equipped['Shield'] = current_loot
+                     #               print(f"{current_loot} equipped")
+                      #              print(f"Equipped items: {attacker.equipped}")
+                   #         elif isinstance (current_loot, items.MagicItem):
+                    #            player.equipped['Magic Item'] = current_loot
+                     #           print(f"{current_loot} equipped")
+                      #          print(f"Equipped items: {attacker.equipped}")
+                   #         break
+                    #    elif loot_choice == '3':
+                     #       print(f"You leave the {current_loot.name} behind")
+                      #      break
+                    #    else:
+                     #       print("Invalid input, please enter 1, 2 or 3. ")
+                      #      continue
+                 #   break
 
-                current_room, current_enemy, current_loot = movement.direction_choice()
-                print(f"You enter a {current_room.name}.")
-                print(f"{current_room.description}")
-                print(f"In the room you see a {current_enemy.name} and a {current_loot.name}.")
-                print(f"The {current_enemy.name} attacks!")
+            current_room, current_enemy, current_loot = movement.direction_choice()
+            print(f"You enter a {current_room.name}.")
+            print(f"{current_room.description}")
+            print(f"In the room you see a {current_enemy.name} and a {current_loot.name}.")
+            print(f"The {current_enemy.name} attacks!")
     
-                initiate_combat(player, current_enemy)
+            initiate_combat(player, current_enemy)
 
         current_turn_index = 1 - current_turn_index
     
+def check_defender_state(player, defender):
+    if defender == player:
+        
+        print(f"\n{player.name}, your quest ends here")
+        stop_game()
+        start_new_game(player)
+        
+      #  return defender
+               # break
+
+    elif defender != player:
+
+        current_loot = defender.loot
+        while True:
+            if isinstance (current_loot, items.Treasure):
+                if current_loot.name == "tome of the sorcerer.":
+                    print("The tome contains many spells, but of particular interest is a teleportation spell you could use to leave the mansion.")
+                    escape = input("Press t to teleport out of the mansion. You can also press t later if you do not wish to leave now. ").lower()
+                    if escape == 't':
+                        print("You use the spell in the sorcerers tome to teleport yourself out of Katscurse Mansion.\nCongratulations, you have survived!")
+                        return stop_game()
+                      #  return
+                    loot_choice = input(f"To add {current_loot.name} to inventory, press 1, to leave it here, press 3. ")
+                    if loot_choice == '1':
+                        player.inventory.append(current_loot)
+                        print(f"{current_loot.name} added to inventory")
+                        print(f"Inventory {player.inventory}")
+                        break
+                    elif loot_choice == '3':
+                        print(f"You leave the {current_loot.name} behind")
+                        break
+                    else:
+                        print("Invalid input. Please enter 1 or 3")
+                        continue
+            else:
+                loot_choice = input(f"To add {current_loot.name} to inventory, press 1, to euip it, press 2, to leave it here, press 3. ")
+                if loot_choice == '1':
+                    player.inventory.append(current_loot)
+                    print(f"{current_loot.name} added to inventory")
+                    print(f"Inventory {player.inventory}")
+                    break
+                elif loot_choice == '2':
+                                        
+                    if isinstance (current_loot, items.Weapon):
+                        player.equipped['Weapon'] = current_loot
+                        player.weapon = current_loot
+                        print(f"{current_loot} equipped")
+                        print(f"Equipped items: {player.equipped}")
+                    elif isinstance (current_loot, items.Armour):
+                        if current_loot.category == "armour":
+                            player.equipped['Armour'] = current_loot
+                            print(f"{current_loot} equipped")
+                            print(f"Equipped items: {player.equipped}")
+                        elif current_loot.category == "shield":
+                            player.equipped['Shield'] = current_loot
+                            print(f"{current_loot} equipped")
+                            print(f"Equipped items: {player.equipped}")
+                    elif isinstance (current_loot, items.MagicItem):
+                        player.equipped['Magic Item'] = current_loot
+                        print(f"{current_loot} equipped")
+                        print(f"Equipped items: {player.equipped}")
+                        break
+                elif loot_choice == '3':
+                    print(f"You leave the {current_loot.name} behind")
+                    break
+                else:
+                    print("Invalid input, please enter 1, 2 or 3. ")
+                    continue
+    return defender
+          #  break
+
 
 def melee_attack(attacker, defender):
     print(f"{attacker.name} attacks with {attacker.weapon}.")

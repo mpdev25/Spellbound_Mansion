@@ -9,28 +9,40 @@ import draw_cards
 import movement
 
 
-def check_global_commands(user_input, my_player,  game_state=True):
+def check_global_commands(user_input, my_player):
+    user_input = user_input.lower()
     if user_input == 'q':
         print("Exiting game...")
-        return False, False
+        start_new_game(my_player)
+        return False, True
             
       
     if user_input == 't':
         print("You use the teleport spell in the sorcerers tome to escape Katscurse Mansion.\nTime to check your loot!")
-        return False, False
+        start_new_game(my_player)
+        return False, True
 
     if user_input == 'c':
         characters.character_sheet(my_player)
         return True, True
-    return False, True
+        
+  #  if user_input == 'm':
+    #    movement.direction_choice()
+              #  return True, True
+    return True, False
        
+should_run = True
 
-
+def stop_game():
+    global should_run
+    should_run = False
+    
 
 def start_new_game(my_player):
     while True:
         user_input = input("Start a new game? y/n ").lower()
-        if not check_global_commands(user_input, my_player):
+        should_run, command_handled = check_global_commands(user_input, my_player)
+        if not should_run:
             return False
         if user_input == "y":
             return True
@@ -85,32 +97,43 @@ def intro(room_list, enemy_list, loot_list):
 
 def play_game(my_player, room_list, enemy_list, loot_list):
     game_running = True
-    while True:
-        user_input = input(f"What do you want to do?\nType q to quit\nc to view character sheet ")
-        command_handled, game_running = check_global_commands(user_input, my_player, game_running)
-        if command_handled:
-            continue
-        else:
-            game_running = False
-            break
-    movement.direction_choice()
-    current_room, current_enemy, current_loot = movement.direction_choice()
+    while game_running:
+        
+        user_input = input(f"What do you want to do?\nType q to quit\nType c to view character sheet\nTo continue through the mansion press m. ")
+        should_run, command_handled = check_global_commands(user_input, my_player)
+        if not should_run:
+            return False
+      #  game_running = should_run
+      #  if command_handled:
+        #    continue
+      #  else:
+        #    game_running = False
+        #    break
+  #  movement.direction_choice()
+        if user_input == 'm':
+            try:
+                current_room, current_enemy, current_loot = movement.direction_choice()
+            
+       
    
-    print(f"You enter a {current_room.name}.")
-    print(f"{current_room.description}")
-    print(f"In the room you see a {current_enemy.name} and a {current_loot.name}.")
-    print(f"The {current_enemy.name} attacks!")
+                print(f"You enter a {current_room.name}.")
+                print(f"{current_room.description}")
+                print(f"In the room you see a {current_enemy.name} and a {current_loot.name}.")
+                print(f"The {current_enemy.name} attacks!")
     
-    combat.initiate_combat(my_player, current_enemy)
-
-    if not my_player.is_alive():
-        print("You end just another victim of Katscurse Mansion.")
-        game_running = False
-    
-   
-    
-    else:
-        return play_game(my_player, room_list, enemy_list, loot_list)
+                combat.initiate_combat(my_player, current_enemy)
+                combat.check_defender_state(my_player, current_enemy)
+                if not my_player.is_alive():
+                    print("You end just another victim of Katscurse Mansion.")
+                    return False
+            except TypeError:
+                print("Movement failed or returned incomplete data. Continuing game loop.")
+                continue
+        elif not command_handled:
+            print("Invalid input. Press m to move or c for character sheet")
+    return game_running   
+  # else:
+   #     return play_game(my_player, room_list, enemy_list, loot_list)
 
 
 

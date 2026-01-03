@@ -17,6 +17,7 @@ def direction_choice():
                 current_room, current_enemy, current_loot = draw_cards.draw_cards(room_list, enemy_list, loot_list)
                 current_enemy.loot = current_loot
                 return current_room, current_enemy, current_loot
+                
             
             else:
                 print("Invalid input! Please enter 1, 2 or 3")

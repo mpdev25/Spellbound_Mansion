@@ -94,7 +94,8 @@ def roll_character():
         dexterity = dexterity,
         magic = magic,
         weapon = starting_weapon,
-        inventory = []
+        inventory = [],
+        equipped = {}
     )
     
     return player
