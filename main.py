@@ -13,13 +13,13 @@ def check_global_commands(user_input, my_player):
     user_input = user_input.lower()
     if user_input == 'q':
         print("Exiting game...")
-        start_new_game(my_player)
+      #  start_new_game(my_player)
         return False, True
             
       
     if user_input == 't':
         print("You use the teleport spell in the sorcerers tome to escape Katscurse Mansion.\nTime to check your loot!")
-        start_new_game(my_player)
+     #   start_new_game(my_player)
         return False, True
 
     if user_input == 'c':
@@ -41,13 +41,14 @@ def stop_game():
 def start_new_game(my_player):
     while True:
         user_input = input("Start a new game? y/n ").lower()
-        should_run, command_handled = check_global_commands(user_input, my_player)
-        if not should_run:
-            return False
+      #  should_run, command_handled = check_global_commands(user_input, my_player)
+      #  if not should_run:
+      #      return False
         if user_input == "y":
             return True
         if user_input == "n":
             print("Exiting game.")
+            
             return False
         else:
             print("Invalid input, please enter y or n.")
@@ -103,9 +104,10 @@ def play_game(my_player, room_list, enemy_list, loot_list):
         should_run, command_handled = check_global_commands(user_input, my_player)
         if not should_run:
             return False
+            
       #  game_running = should_run
-      #  if command_handled:
-        #    continue
+        if command_handled:
+            continue
       #  else:
         #    game_running = False
         #    break
@@ -123,15 +125,19 @@ def play_game(my_player, room_list, enemy_list, loot_list):
     
                 combat.initiate_combat(my_player, current_enemy)
                 combat.check_defender_state(my_player, current_enemy)
+                if my_player.is_alive():
+                    return True, True
                 if not my_player.is_alive():
                     print("You end just another victim of Katscurse Mansion.")
                     return False
+                
             except TypeError:
                 print("Movement failed or returned incomplete data. Continuing game loop.")
                 continue
-        elif not command_handled:
+       # elif not command_handled:
+        else:
             print("Invalid input. Press m to move or c for character sheet")
-    return game_running   
+   # return game_running   
   # else:
    #     return play_game(my_player, room_list, enemy_list, loot_list)
 

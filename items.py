@@ -97,7 +97,7 @@ class MagicItem:
 
 healing_potion = MagicItem("healing potion", 5)
 
-greater_healing_potion = MagicItem("grater healing potion", 10)
+greater_healing_potion = MagicItem("greater healing potion", 10)
 
 potion_of_stone_skin = MagicItem("potion of stone skin", 0, 4)
 

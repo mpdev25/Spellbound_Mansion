@@ -116,7 +116,7 @@ def start_battle(turn_order, player):
             print(f"{current_room.description}")
             print(f"In the room you see a {current_enemy.name} and a {current_loot.name}.")
             print(f"The {current_enemy.name} attacks!")
-    
+            
             initiate_combat(player, current_enemy)
 
         current_turn_index = 1 - current_turn_index
@@ -138,7 +138,7 @@ def check_defender_state(player, defender):
             if isinstance (current_loot, items.Treasure):
                 if current_loot.name == "tome of the sorcerer.":
                     print("The tome contains many spells, but of particular interest is a teleportation spell you could use to leave the mansion.")
-                    escape = input("Press t to teleport out of the mansion. You can also press t later if you do not wish to leave now. ").lower()
+                    escape = input("Press t to teleport out of the mansion. You can also press t later if you do not wish to leave now, in which case press enter. ").lower()
                     if escape == 't':
                         print("You use the spell in the sorcerers tome to teleport yourself out of Katscurse Mansion.\nCongratulations, you have survived!")
                         return stop_game()
@@ -147,7 +147,7 @@ def check_defender_state(player, defender):
                     if loot_choice == '1':
                         player.inventory.append(current_loot)
                         print(f"{current_loot.name} added to inventory")
-                        print(f"Inventory {player.inventory}")
+                    #    print(f"Inventory {player.inventory}")
                         break
                     elif loot_choice == '3':
                         print(f"You leave the {current_loot.name} behind")
@@ -160,28 +160,33 @@ def check_defender_state(player, defender):
                 if loot_choice == '1':
                     player.inventory.append(current_loot)
                     print(f"{current_loot.name} added to inventory")
-                    print(f"Inventory {player.inventory}")
+                #    print(f"Inventory {player.inventory}")
                     break
+                    
                 elif loot_choice == '2':
                                         
                     if isinstance (current_loot, items.Weapon):
                         player.equipped['Weapon'] = current_loot
                         player.weapon = current_loot
                         print(f"{current_loot} equipped")
-                        print(f"Equipped items: {player.equipped}")
+                        
+                   #     print(f"Equipped items: {player.equipped}")
+                        break
                     elif isinstance (current_loot, items.Armour):
                         if current_loot.category == "armour":
                             player.equipped['Armour'] = current_loot
                             print(f"{current_loot} equipped")
-                            print(f"Equipped items: {player.equipped}")
+                     #       print(f"Equipped items: {player.equipped}")
+                            break
                         elif current_loot.category == "shield":
                             player.equipped['Shield'] = current_loot
                             print(f"{current_loot} equipped")
-                            print(f"Equipped items: {player.equipped}")
+                    #        print(f"Equipped items: {player.equipped}")
+                            break
                     elif isinstance (current_loot, items.MagicItem):
                         player.equipped['Magic Item'] = current_loot
                         print(f"{current_loot} equipped")
-                        print(f"Equipped items: {player.equipped}")
+                    #    print(f"Equipped items: {player.equipped}")
                         break
                 elif loot_choice == '3':
                     print(f"You leave the {current_loot.name} behind")
@@ -198,7 +203,8 @@ def melee_attack(attacker, defender):
     attack = roll_dice(20) + (attacker.weapon.bonus + attacker.melee_bonus)
     
     print(f"{attacker.name} attack roll: {attack}")
-    if attack > defender.protection:
+    
+    if attack > defender.get_total_protection():
         damage_dealt = attacker.weapon.damage_roll()
         defender.life -= damage_dealt
         print(f"{defender.name} takes {damage_dealt} damage")
@@ -210,7 +216,7 @@ def ranged_attack(attacker, defender):
     print(f"{attacker.name} attacks with {attacker.weapon}.")
     attack = roll_dice(20) + (attacker.weapon.bonus + attacker.ranged_bonus)
     print(f"{attacker.name} attack roll: {attack}")
-    if attack > defender.protection:
+    if attack > defender.get_total_protection():
         damage_dealt = attacker.weapon.damage_roll()
         defender.life -= damage_dealt
         print(f"{defender.name} takes {damage_dealt} damage")
@@ -221,7 +227,7 @@ def magic_attack(attacker, defender):
     print(f"{attacker.name} attacks with {attacker.weapon}.")
     attack = roll_dice(20) + (attacker.weapon.bonus + attacker.magic_bonus)
     print(f"{attacker.name} attack roll: {attack}")
-    if attack > defender.protection:
+    if attack > defender.get_total_protection():
         damage_dealt = attacker.weapon.damage_roll()
         defender.life -= damage_dealt
         print(f"{defender.name} takes {damage_dealt} damage")

@@ -41,7 +41,7 @@ room_sixteen = Location("observatory", "The center of the domed room is taken up
 
 room_seventeen = Location("small guest room", "The room has comfortable furnishing, all of which is covered in a thick layer of dust.\nYou feel a slight draft as the door behind you quietly closes. There are three other exits from the room.")
 
-room_eighteen = Location("large pantry", "Food storage bins lilne the shelves of this room, but their contents have either rotted away, or lay coverd in dust.\nA clicking sound alerts you to the door behind you locking, but, strangely for a pantry, you see three other doors.")
+room_eighteen = Location("large pantry", "Food storage bins line the shelves of this room, but their contents have either rotted away, or lay coverd in dust.\nA clicking sound alerts you to the door behind you locking, but, strangely for a pantry, you see three other doors.")
 
 room_nineteen = Location("large guest room", "A spacious, opulently furnished room with a bed , work desk adn comfortable  chairs.\nThe door behind you quietly closes, but you can see three others doors leading out of the room.")
 

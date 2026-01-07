@@ -3,7 +3,7 @@ import items
 
 
 class Character:
-    def __init__(self, name, life, protection, strength, dexterity, magic, weapon, equipped=None, inventory=None, loot = None):
+    def __init__(self, name, life, protection, strength, dexterity, magic, weapon, equipped=None, inventory=None, loot = None, equipped_armour = None):
         self.name = name
         self.life = life
         self.protection = protection
@@ -16,7 +16,7 @@ class Character:
         self.weapon = weapon
         self.inventory = inventory if inventory is not None else []
         self.loot = loot if loot is not None else []
-
+        self.equipped_armour = None
         if equipped is not None:
             self.equipped = equipped
         else:
@@ -43,6 +43,18 @@ class Character:
             return "\n".join([f" - {item.name}" for item in item_dict_or_list])
         else:
             return str(item_dict_or_list)
+
+    def equip_armour(self, armour):
+        if self.equipped_armour:
+            print(f"{self.name} unequipped {self.equipped_armour.name}.")
+        self.equipped_armour = armour
+        print(f"{self.name} equipped {armour.name}.")
+
+    def get_total_protection(self):
+        total_protection = self.protection
+        if self.equipped_armour:
+            total_protection += self.equipped_armour.protection
+        return total_protection
 
     def __str__(self):
         return (
