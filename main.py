@@ -18,9 +18,14 @@ def check_global_commands(user_input, my_player):
             
       
     if user_input == 't':
-        print("You use the teleport spell in the sorcerers tome to escape Katscurse Mansion.\nTime to check your loot!")
-     #   start_new_game(my_player)
-        return False, True
+        has_tome = any(item.name == "tome of the sorcerer." for item in my_player.inventory)
+        if has_tome:
+            print("You use the teleport spell in the sorcerers tome to escape Katscurse Mansion.\nTime to check your loot!")
+     
+            return False, True
+        else:
+            print("You don't have a teleport spell!")
+            return True, True
 
     if user_input == 'c':
         characters.character_sheet(my_player)
@@ -36,7 +41,7 @@ should_run = True
 def stop_game():
     global should_run
     should_run = False
-    
+    start_new_game(my_player)
 
 def start_new_game(my_player):
     while True:
@@ -124,9 +129,7 @@ def play_game(my_player, room_list, enemy_list, loot_list):
                 print(f"The {current_enemy.name} attacks!")
     
                 combat.initiate_combat(my_player, current_enemy)
-                combat.check_defender_state(my_player, current_enemy)
-                if my_player.is_alive():
-                    return True, True
+               
                 if not my_player.is_alive():
                     print("You end just another victim of Katscurse Mansion.")
                     return False

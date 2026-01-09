@@ -3,7 +3,7 @@ import items
 
 
 class Character:
-    def __init__(self, name, life, protection, strength, dexterity, magic, weapon, equipped=None, inventory=None, loot = None, equipped_armour = None):
+    def __init__(self, name, life, protection, strength, dexterity, magic, weapon, equipped=None, inventory=None, loot = None, equipped_armour = None, equipped_magic = None, equipped_shield = None):
         self.name = name
         self.life = life
         self.protection = protection
@@ -17,6 +17,8 @@ class Character:
         self.inventory = inventory if inventory is not None else []
         self.loot = loot if loot is not None else []
         self.equipped_armour = None
+        self.equipped_magic = None
+        self.equipped_shield = None
         if equipped is not None:
             self.equipped = equipped
         else:
