@@ -116,48 +116,8 @@ def check_defender_state(player, defender):
             print("Invalid input. Please enter 1, 2 or 3")
                       #  continue
     return True
-          #  else:
-          #      loot_choice = input(f"To add {current_loot.name} to inventory, press 1, to euip it, press 2, to leave it here, press 3. ")
-           #     if loot_choice == '1':
-           #         player.inventory.append(current_loot)
-          #          print(f"{current_loot.name} added to inventory")
-                #    print(f"Inventory {player.inventory}")
-          #          break
-                    
-            #    elif loot_choice == '2':
-                                        
-             #       if isinstance (current_loot, items.Weapon):
-            #            player.equipped['Weapon'] = current_loot
-            #            player.weapon = current_loot
-               #         print(f"{current_loot} equipped")
-                        
-                   #     print(f"Equipped items: {player.equipped}")
-               #         break
-               #     elif isinstance (current_loot, items.Armour):
-               #         if current_loot.category == "armour":
-              #              player.equipped['Armour'] = current_loot
-              #              print(f"{current_loot} equipped")
-                     #       print(f"Equipped items: {player.equipped}")
-              #              break
-                #        elif current_loot.category == "shield":
-                 #           player.equipped['Shield'] = current_loot
-                 #           print(f"{current_loot} equipped")
-                    #        print(f"Equipped items: {player.equipped}")
-                   #         break
-                 #   elif isinstance (current_loot, items.MagicItem):
-                 #       player.equipped['Magic Item'] = current_loot
-                #        print(f"{current_loot} equipped")
-                    #    print(f"Equipped items: {player.equipped}")
-           #             break
-           #     elif loot_choice == '3':
-           #         print(f"You leave the {current_loot.name} behind")
-           #         break
-           #     else:
-          #          print("Invalid input, please enter 1, 2 or 3. ")
-          #          continue
-  #  return True
-    #return defender
-          #  break
+         
+              
 
 
 def melee_attack(attacker, defender):

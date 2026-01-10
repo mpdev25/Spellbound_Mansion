@@ -54,8 +54,13 @@ class Character:
 
     def get_total_protection(self):
         total_protection = self.protection
+        
         if self.equipped_armour:
             total_protection += self.equipped_armour.protection
+        if self.equipped_shield:
+            total_protection += self.equipped_shield.protection
+        if self.equipped_magic:
+            total_protection += self.equipped_magic.protection
         return total_protection
 
     def __str__(self):
