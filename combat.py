@@ -49,10 +49,7 @@ def start_battle(turn_order, player):
             return
 
         current_turn_index = 1 - current_turn_index
-   # if player.is_alive():
-     #   return True
-    #else:
-   #     return False
+   
     
 def check_defender_state(player, defender):
     if defender == player:
@@ -102,7 +99,8 @@ def check_defender_state(player, defender):
             elif isinstance(current_loot, items.MagicItem):
                 player.equipped_magic = current_loot
                 player.equipped['Magic Item'] = current_loot
-                print(f"{current_loot} equipped")
+                print(f"{current_loot.name} equipped")
+                break
             elif isinstance(current_loot, items.Treasure):
                 player.inventory.append(current_loot)
                 print(f"{current_loot.name} cannot be equipped. It has been added to inventory")
@@ -128,9 +126,11 @@ def melee_attack(attacker, defender):
     
     if attack > defender.get_total_protection():
         damage_dealt = attacker.weapon.damage_roll()
+        
         defender.life -= damage_dealt
+        current_life = defender.get_total_life()
         print(f"{defender.name} takes {damage_dealt} damage")
-        print(f"{defender.name} has {defender.life} life remaining")
+        print(f"{defender.name} has {current_life} life remaining")
         
 
 
@@ -140,9 +140,11 @@ def ranged_attack(attacker, defender):
     print(f"{attacker.name} attack roll: {attack}")
     if attack > defender.get_total_protection():
         damage_dealt = attacker.weapon.damage_roll()
+        
         defender.life -= damage_dealt
+        current_life = defender.get_total_life()
         print(f"{defender.name} takes {damage_dealt} damage")
-        print(f"{defender.name} has {defender.life} life remaining")
+        print(f"{defender.name} has {current_life} life remaining")
         
 
 def magic_attack(attacker, defender):
@@ -151,9 +153,11 @@ def magic_attack(attacker, defender):
     print(f"{attacker.name} attack roll: {attack}")
     if attack > defender.get_total_protection():
         damage_dealt = attacker.weapon.damage_roll()
+        
         defender.life -= damage_dealt
+        current_life = defender.get_total_life()
         print(f"{defender.name} takes {damage_dealt} damage")
-        print(f"{defender.name} has {defender.life} life remaining")
+        print(f"{defender.name} has {current_life} life remaining")
         
 
 

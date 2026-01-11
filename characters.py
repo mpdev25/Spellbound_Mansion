@@ -30,7 +30,7 @@ class Character:
             }
 
     def is_alive(self):
-        return self.life > 0
+        return self.get_total_life() > 0
 
     def display_items(self, item_dict_or_list):
         if isinstance(item_dict_or_list, dict):
@@ -60,8 +60,15 @@ class Character:
         if self.equipped_shield:
             total_protection += self.equipped_shield.protection
         if self.equipped_magic:
-            total_protection += self.equipped_magic.protection
+            if self.equipped_magic.protection is not None:
+                total_protection += self.equipped_magic.protection
         return total_protection
+
+    def get_total_life(self):
+        total_life = self.life
+        if self.equipped_magic:
+            total_life += self.equipped_magic.life
+        return total_life
 
     def __str__(self):
         return (

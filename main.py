@@ -41,7 +41,7 @@ should_run = True
 def stop_game():
     global should_run
     should_run = False
-    start_new_game(my_player)
+  #  start_new_game(my_player)
 
 def start_new_game(my_player):
     while True:
