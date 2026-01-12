@@ -65,7 +65,7 @@ class Character:
         return total_protection
 
     def get_total_life(self):
-        total_life = self.life
+        total_life = self.life if self.life is not None else 0
         if self.equipped_magic:
             total_life += self.equipped_magic.life
         return total_life

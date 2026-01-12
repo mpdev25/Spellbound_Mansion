@@ -27,6 +27,8 @@ def roll_initiative(player, enemy):
 
 def start_battle(turn_order, player):
     first, second = turn_order
+
+
     current_turn_index = 0
     participants = [first, second]
     while first.is_alive() and second.is_alive():
@@ -56,13 +58,7 @@ def check_defender_state(player, defender):
         
         print(f"\n{player.name}, your quest ends here")
         return False
-       # stop_game()
-        #start_new_game(player)
-        
-      #  return defender
-               # break
-
-    #elif defender != player:
+       
 
     current_loot = defender.loot
     if not current_loot:
@@ -70,7 +66,7 @@ def check_defender_state(player, defender):
         return True
     while True:
         if isinstance (current_loot, items.Treasure) and current_loot.name == "tome of the sorcerer.":
-              #  if current_loot.name == "tome of the sorcerer.":
+              
             print("The tome contains many spells, but of particular interest is a teleportation spell you could use to leave the mansion.")
             escape = input("Press t to teleport out of the mansion. You can also press t later if you do not wish to leave now, in which case press enter. ").lower()
             if escape == 't':
@@ -112,7 +108,7 @@ def check_defender_state(player, defender):
             break
         else:
             print("Invalid input. Please enter 1, 2 or 3")
-                      #  continue
+                      
     return True
          
               

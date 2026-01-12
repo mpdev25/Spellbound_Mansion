@@ -13,7 +13,7 @@ def check_global_commands(user_input, my_player):
     user_input = user_input.lower()
     if user_input == 'q':
         print("Exiting game...")
-      #  start_new_game(my_player)
+      
         return False, True
             
       
@@ -31,9 +31,7 @@ def check_global_commands(user_input, my_player):
         characters.character_sheet(my_player)
         return True, True
         
-  #  if user_input == 'm':
-    #    movement.direction_choice()
-              #  return True, True
+ 
     return True, False
        
 should_run = True
@@ -41,14 +39,12 @@ should_run = True
 def stop_game():
     global should_run
     should_run = False
-  #  start_new_game(my_player)
+  
 
 def start_new_game(my_player):
     while True:
         user_input = input("Start a new game? y/n ").lower()
-      #  should_run, command_handled = check_global_commands(user_input, my_player)
-      #  if not should_run:
-      #      return False
+     
         if user_input == "y":
             return True
         if user_input == "n":
@@ -110,39 +106,39 @@ def play_game(my_player, room_list, enemy_list, loot_list):
         if not should_run:
             return False
             
-      #  game_running = should_run
+     
         if command_handled:
             continue
-      #  else:
-        #    game_running = False
-        #    break
-  #  movement.direction_choice()
+     
         if user_input == 'm':
-            try:
-                current_room, current_enemy, current_loot = movement.direction_choice()
-            
-       
-   
-                print(f"You enter a {current_room.name}.")
-                print(f"{current_room.description}")
-                print(f"In the room you see a {current_enemy.name} and a {current_loot.name}.")
-                print(f"The {current_enemy.name} attacks!")
-    
-                combat.initiate_combat(my_player, current_enemy)
-               
-                if not my_player.is_alive():
-                    print("You end just another victim of Katscurse Mansion.")
-                    return False
-                
-            except TypeError:
-                print("Movement failed or returned incomplete data. Continuing game loop.")
+           # try:
+            #    current_room, current_enemy, current_loot = movement.direction_choice(room_list, enemy_list, loot_list)
+            result = movement.direction_choice(room_list, enemy_list, loot_list)
+            if result is None:
+                print("There are no more rooms to explore!")
+                final_input = input("Without a teleport spell you are trapped in the mansion forever. If you have the teleport spell use it now, otherwise press q to quit. ").lower()
                 continue
-       # elif not command_handled:
+            current_room, current_enemy, current_loot = result
+            print(f"You enter a {current_room.name}.")
+            print(f"{current_room.description}")
+            print(f"In the room you see a {current_enemy.name} and a {current_loot.name}.")
+            print(f"The {current_enemy.name} attacks!")
+    
+            combat.initiate_combat(my_player, current_enemy)
+               
+            if not my_player.is_alive():
+                print("You end just another victim of Katscurse Mansion.")
+                return False
+                
+         #   except TypeError:
+           #     print("Movement failed or returned incomplete data. Continuing game loop.")
+           #     continue
+          #  except IndexError:
+           #     final_input = input("There are no more rooms to explore. Without a teleport spell you are trapped in the mansion forever. If you have the teleport spell use it now, otherwise press q to quit.").lower()
+       
         else:
-            print("Invalid input. Press m to move or c for character sheet")
-   # return game_running   
-  # else:
-   #     return play_game(my_player, room_list, enemy_list, loot_list)
+            print("Invalid input. Press q to quit, m to move or c for character sheet")
+   
 
 
 
