@@ -66,16 +66,22 @@ def check_defender_state(player, defender):
         return True
     while True:
         if isinstance (current_loot, items.Treasure) and current_loot.name == "tome of the sorcerer.":
-              
+            player.inventory.append(current_loot) 
             print("The tome contains many spells, but of particular interest is a teleportation spell you could use to leave the mansion.")
-            escape = input("Press t to teleport out of the mansion. You can also press t later if you do not wish to leave now, in which case press enter. ").lower()
-            if escape == 't':
-                print("You use the spell in the sorcerers tome to teleport yourself out of Katscurse Mansion.\nCongratulations, you have survived!")
-                stop_game()
-                return False
-            break
+            print("Add the tome to your inventory, then Press t to teleport out of the mansion when you are not in combat.")
+          
+
         print(f"\nYou found {current_loot.name}")
+        damage_info = f"Damage: {current_loot.dice}" if hasattr(current_loot, "dice") and current_loot.damage_roll is not None else ""
+        protection_info = f"Protection: {current_loot.protection}" if hasattr(current_loot, "protection") and current_loot.protection is not None else ""
+        value_info = f"Value: {current_loot.value}" if hasattr(current_loot, "value") and current_loot.value is not None else ""
+        life_info = f"Life: {current_loot.life}" if hasattr(current_loot, "life") and current_loot.life is not None else ""
+        details = ", ".join(filter(None, [damage_info, protection_info, value_info, life_info]))
+        print(f"Properties: {details}")
+
+        print(f"Currently equipped items:\nWeapon: {player.weapon}\nArmour: {player.equipped_armour}\nShield: {player.equipped_shield}\nMagic: {player.equipped_magic}")
         loot_choice = input(f"To add {current_loot.name} to inventory, press 1, to equip it, press 2, to leave it here, press 3. ")
+        
         if loot_choice == '1':
             player.inventory.append(current_loot)
             print(f"{current_loot.name} added to inventory")
@@ -83,7 +89,7 @@ def check_defender_state(player, defender):
             break
         elif loot_choice == '2':
             if isinstance(current_loot, items.Weapon):
-                player.Weapon = current_loot
+                player.weapon = current_loot
                 player.equipped['Weapon'] = current_loot
             elif isinstance(current_loot, items.Armour):
                 if current_loot.category == "armour":

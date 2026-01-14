@@ -15,7 +15,7 @@ MASTER_LIST_ROOMS = [locations.room_one, locations.room_two, locations.room_thre
 
 MASTER_LIST_ENEMIES = [characters.goblin_sword, characters.goblin_bow, characters.skeleton_longbow, characters.skeleton_sword, characters.undead_sorcerer, characters.orc_axe, characters.hellhound, characters.zombie_warrior, characters.zombie_short_bow, characters.specter, characters.ghoul, characters.animated_armour, characters.shadow_lurker, characters.giant_spider, characters.young_giant_spider, characters.lost_bandit, characters.orc_longbow, characters.ogre, characters.horde_of_rats, characters.lich]
 
-MASTER_LIST_LOOT = [items.wand_of_destruction, items.enhanced_longbow, items.expertly_crafted_longsword, items.great_sword, items.heavy_crossbow, items.staff_of_light, items.sorcerers_tome, items.healing_potion, items.greater_healing_potion, items.potion_of_stone_skin, items.shield_scroll, items.giant_ruby, items.small_chest, items.large_chest, items.pouch, items.sorcerers_horde, items.chainmail_armour, items.plate_armour, items.robe_of_protection, items.small_shield, items.large_shield]
+MASTER_LIST_LOOT = [items.wand_of_destruction, items.enhanced_longbow, items.expertly_crafted_longsword, items.great_sword, items.heavy_crossbow, items.staff_of_light, items.sorcerers_tome, items.potion_of_vitality, items.greater_potion_of_vitality, items.potion_of_stone_skin, items.shield_scroll, items.giant_ruby, items.small_chest, items.large_chest, items.pouch, items.sorcerers_horde, items.chainmail_armour, items.plate_armour, items.robe_of_protection, items.small_shield, items.large_shield]
 
 rooms = []
 enemies = []
@@ -134,8 +134,7 @@ def play_game(my_player, room_list, enemy_list, loot_list):
             continue
      
         if user_input == 'm':
-           # try:
-            #    current_room, current_enemy, current_loot = movement.direction_choice(room_list, enemy_list, loot_list)
+           
             result = movement.direction_choice(room_list, enemy_list, loot_list)
             if result is None:
                 print("There are no more rooms to explore!")
@@ -153,11 +152,7 @@ def play_game(my_player, room_list, enemy_list, loot_list):
                 print("You end just another victim of Katscurse Mansion.")
                 return False
                 
-         #   except TypeError:
-           #     print("Movement failed or returned incomplete data. Continuing game loop.")
-           #     continue
-          #  except IndexError:
-           #     final_input = input("There are no more rooms to explore. Without a teleport spell you are trapped in the mansion forever. If you have the teleport spell use it now, otherwise press q to quit.").lower()
+         
        
         else:
             print("Invalid input. Press q to quit, m to move or c for character sheet")
@@ -166,11 +161,7 @@ def play_game(my_player, room_list, enemy_list, loot_list):
 
 
 def main():
- #   room_list = [locations.room_one, locations.room_two, locations.room_three, locations.room_four, locations.room_five, locations.room_six,  locations.room_seven, locations.room_eight, locations.room_nine, locations.room_ten, locations.room_eleven, locations.room_twelve, locations.room_thirteen, locations.room_fourteen, locations.room_fifteen, locations.room_sixteen, locations.room_seventeen, locations.room_eighteen, locations.room_nineteen, locations.room_twenty]
-
- #   enemy_list = [characters.goblin_sword, characters.goblin_bow, characters.skeleton_longbow, characters.skeleton_sword, characters.undead_sorcerer, characters.orc_axe, characters.hellhound, characters.zombie_warrior, characters.zombie_short_bow, characters.specter, characters.ghoul, characters.animated_armour, characters.shadow_lurker, characters.giant_spider, characters.young_giant_spider, characters.lost_bandit, characters.orc_longbow, characters.ogre, characters.horde_of_rats, characters.lich]
-
-  #  loot_list = [items.wand_of_destruction, items.enhanced_longbow, items.expertly_crafted_longsword, items.great_sword, items.heavy_crossbow, items.staff_of_light, items.sorcerers_tome, items.healing_potion, items.greater_healing_potion, items.potion_of_stone_skin, items.shield_scroll, items.giant_ruby, items.small_chest, items.large_chest, items.pouch, items.sorcerers_horde, items.chainmail_armour, items.plate_armour, items.robe_of_protection, items.small_shield, items.large_shield]
+ 
     room_list, enemy_list, loot_list = init_game_data()
     game_running = True
     

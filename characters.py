@@ -190,7 +190,7 @@ zombie_warrior = Character("zombie with a spear", 10, 12, 15, 14, 7, items.spear
 
 zombie_short_bow = Character("zombie with a shortbow", 10, 12, 14, 15, 7, items.short_bow, items.short_bow)
 
-specter = Character("specter", 14, 14, 8, 12, 18, items.psychic_blast, items.psychic_blast)
+specter = Character("specter", 16, 12, 14, 12, 15, items.psychic_blast, items.psychic_blast)
 
 ghoul = Character("ghoul", 12, 12, 16, 14, 12, items.ghoul_claws, items.ghoul_claws)
 

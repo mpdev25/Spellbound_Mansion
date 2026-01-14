@@ -95,9 +95,9 @@ class MagicItem:
         return f"({self.name} Life: {self.life} Protection: {self.protection})"
 
 
-healing_potion = MagicItem("healing potion", 5)
+potion_of_vitality = MagicItem("potion of vitality", 5)
 
-greater_healing_potion = MagicItem("greater healing potion", 10)
+greater_potion_of_vitality = MagicItem("greater potion of vitality", 10)
 
 potion_of_stone_skin = MagicItem("potion of stone skin", 0, 4)
 
