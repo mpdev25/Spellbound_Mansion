@@ -3,6 +3,7 @@ from main import stop_game, start_new_game, should_run
 import characters
 import movement
 import items
+import time
 
 def initiate_combat(player, enemy):
     turn_order = roll_initiative(player, enemy)
@@ -112,6 +113,7 @@ def check_defender_state(player, defender):
                 break
             elif isinstance(current_loot, items.Treasure):
                 player.inventory.append(current_loot)
+                player.loot.append(current_loot)
                 print(f"{current_loot.name} cannot be equipped. It has been added to inventory")
                 break
         
@@ -130,15 +132,16 @@ def check_defender_state(player, defender):
 def melee_attack(attacker, defender):
     print(f"{attacker.name} attacks with {attacker.weapon}.")
     attack = roll_dice(20) + (attacker.weapon.bonus + attacker.melee_bonus)
-    
+    time.sleep(1)
     print(f"{attacker.name} attack roll: {attack}")
-    
+    time.sleep(0.5)
     if attack > defender.get_total_protection():
         damage_dealt = attacker.weapon.damage_roll()
         
         defender.life -= damage_dealt
         current_life = defender.get_total_life()
         print(f"{defender.name} takes {damage_dealt} damage")
+        time.sleep(0.5)
         print(f"{defender.name} has {current_life} life remaining")
         
 
@@ -146,26 +149,32 @@ def melee_attack(attacker, defender):
 def ranged_attack(attacker, defender):
     print(f"{attacker.name} attacks with {attacker.weapon}.")
     attack = roll_dice(20) + (attacker.weapon.bonus + attacker.ranged_bonus)
+    time.sleep(1)
     print(f"{attacker.name} attack roll: {attack}")
+    time.sleep(0.5)
     if attack > defender.get_total_protection():
         damage_dealt = attacker.weapon.damage_roll()
         
         defender.life -= damage_dealt
         current_life = defender.get_total_life()
         print(f"{defender.name} takes {damage_dealt} damage")
+        time.sleep(0.5)
         print(f"{defender.name} has {current_life} life remaining")
         
 
 def magic_attack(attacker, defender):
     print(f"{attacker.name} attacks with {attacker.weapon}.")
     attack = roll_dice(20) + (attacker.weapon.bonus + attacker.magic_bonus)
+    time.sleep(1)
     print(f"{attacker.name} attack roll: {attack}")
+    time.sleep(0.5)
     if attack > defender.get_total_protection():
         damage_dealt = attacker.weapon.damage_roll()
         
         defender.life -= damage_dealt
         current_life = defender.get_total_life()
         print(f"{defender.name} takes {damage_dealt} damage")
+        time.sleep(0.5)
         print(f"{defender.name} has {current_life} life remaining")
         
 

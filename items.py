@@ -12,7 +12,7 @@ class Weapon:
         self.bonus = bonus
 
     def __str__(self):
-        return f"({self.name} Damage: {self.dice})"
+        return f"({self.name} Damage: {self.dice} Bonus: {self.bonus} Hands: {self.hands})"
 
    
 

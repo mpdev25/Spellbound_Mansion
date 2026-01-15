@@ -8,7 +8,7 @@ import locations
 import draw_cards
 import movement
 import copy
-
+import time
 
 
 MASTER_LIST_ROOMS = [locations.room_one, locations.room_two, locations.room_three, locations.room_four, locations.room_five, locations.room_six,  locations.room_seven, locations.room_eight, locations.room_nine, locations.room_ten, locations.room_eleven, locations.room_twelve, locations.room_thirteen, locations.room_fourteen, locations.room_fifteen, locations.room_sixteen, locations.room_seventeen, locations.room_eighteen, locations.room_nineteen, locations.room_twenty]
@@ -177,9 +177,11 @@ def play_game(my_player, room_list, enemy_list, loot_list):
             current_room, current_enemy, current_loot = result
             print(f"You enter a {current_room.name}.")
             print(f"{current_room.description}")
+            time.sleep(5)
             print(f"In the room you see a {current_enemy.name} and a {current_loot.name}.")
+            time.sleep(3)
             print(f"The {current_enemy.name} attacks!")
-    
+            time.sleep(2)
             combat.initiate_combat(my_player, current_enemy)
                
             if not my_player.is_alive():

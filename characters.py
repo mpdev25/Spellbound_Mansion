@@ -35,14 +35,14 @@ class Character:
     def display_items(self, item_dict_or_list):
         if isinstance(item_dict_or_list, dict):
             lines = []
-            for slot, item in item_dict_or_list.items():
+            for i, (slot, item) in enumerate(item_dict_or_list.items(), 1):
                 item_name = item.name if item is not None else 'None'
-                lines.append(f" {slot}: {item_name}")
+                lines.append(f"{i}. {slot}: {item_name}")
             return "\n".join(lines)
         elif isinstance(item_dict_or_list, list):
             if not item_dict_or_list:
                 return " None"
-            return "\n".join([f" - {item.name}" for item in item_dict_or_list])
+            return "\n".join([f"{i}. {item.name}" for i, item in enumerate(item_dict_or_list, 1)])
         else:
             return str(item_dict_or_list)
 
@@ -50,27 +50,32 @@ class Character:
         if item.category == 'melee' or item.category == 'ranged' or item.category == 'magic weapon':
             if self.equipped['Weapon'] is not None:
                 print(f"{self.name} unequipped {self.equipped['Weapon'].name}.")
-                self.equipped['Weapon'] = item
-                self.weapon = item
-                print(f"{self.name} equipped {item.name}.")
+            self.equipped['Weapon'] = item
+            self.weapon = item
+            print(f"{self.name} equipped {item.name}.")
         elif item.category == 'armour':
             if self.equipped['Armour'] is not None:
                 print(f"{self.name} unequipped {self.equipped['Armour'].name}.")
-                self.equipped['Armour'] = item
-                self.equipped_armour = item
-                print(f"{self.name} equipped {item.name}.")
+            self.equipped['Armour'] = item
+            self.equipped_armour = item
+            print(f"{self.name} equipped {item.name}.")
         elif item.category == 'shield':
-            if self.equipped['Shield'] is not None:
-                print(f"{self.name} unequipped {self.equipped['Shield'].name}.")
-                self.equipped['Shield'] = item
-                self.equipped_shield = item
-                print(f"{self.name} equipped {item.name}.")
+         #  if self.equipped['Shield'] is not None:
+            if self.equipped_shield is not None:
+                print(f"{self.name} unequipped {self.equipped_shield.name}.")
+              #  print(f"{self.name} unequipped {self.equipped['Shield'].name}.")
+            self.equipped['Shield'] = item
+            self.equipped_shield = item
+            print(f"{self.name} equipped {item.name}.")
         elif item.category == 'magic':
-            if self.equipped['Magic Item'] is not None:
-                print(f"{self.name} unequipped {self.equipped['Magic Item'].name}.")
-                self.equipped['Magic Item'] = item
-                self.equipped_magic = item
-                print(f"{self.name} equipped {item.name}.")
+          #  if self.equipped['Magic Item'] is not None:
+            if self.equipped_magic is not None:
+                
+                print(f"{self.name} unequipped {self.equipped_magic.name}.")
+               # print(f"{self.name} unequipped {self.equipped['Magic Item'].name}.")
+            self.equipped['Magic Item'] = item
+            self.equipped_magic = item
+            print(f"{self.name} equipped {item.name}.")
         else:
             print(f"Cannot equip {item.name}.")
 

@@ -27,7 +27,7 @@ room_nine = Location("dining room", "There is a table and chairs to  seat six. T
 
 room_ten = Location("conservatory", "Through the glass panes you can see the grounds of the mansion, but a faint glow from the glass convinces you that youo won't be able to break it.\nApart from one overgrown shub, the plants here have long since died.\nYou hear the door behind you obolt itself, but there are three other exits, thouogh curiously, none of them lead outside.")
 
-room_eleven = Location("wine cellar", "You here some rats scurrying away as you enter the dark celler.\nIt remains well stocked with wine.\nThe door behind you shuts and bolts itseld, but looking around you can see three more doors.")
+room_eleven = Location("wine cellar", "You here some rats scurrying away as you enter the dark celler.\nIt remains well stocked with wine.\nThe door behind you shuts and bolts itself, but looking around you can see three more doors.")
 
 room_twelve = Location("attic", "Although roomy, the attic is dark with numerous spiderwebs criss-crossing amoung the myriad bric-a-brac that lies around.\nYou can make out three trapdoor exits, but you can find no trace of the door you entered the attic from.")
 
