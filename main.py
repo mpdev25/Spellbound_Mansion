@@ -42,7 +42,10 @@ def check_global_commands(user_input, my_player):
         has_tome = any(item.name == "tome of the sorcerer." for item in my_player.inventory)
         if has_tome:
             print("You use the teleport spell in the sorcerers tome to escape Katscurse Mansion.\nTime to check your loot!")
-     
+            print("Loot:\n")
+            for item in my_player.inventory:
+                if hasattr(item, "value"):
+                    print(f"{item.name}, {item.value}")
             return False, True
         else:
             print("You don't have a teleport spell!")
@@ -52,7 +55,38 @@ def check_global_commands(user_input, my_player):
         characters.character_sheet(my_player)
         return True, True
         
- 
+    if user_input == 'e':
+        print("\n--- Inventory ---")
+        if not my_player.inventory:
+            print("your inventory is empty.")
+        else:
+            print(my_player.display_items(my_player.inventory))
+
+        print("\n--- Equipped ---")
+        print(my_player.display_items(my_player.equipped))
+
+        if not my_player.inventory:
+            print("\nNothing to equip. Returning to game.")
+            return
+
+        while True:
+            choice_input = input("Enter the number of the item to equip, or press r to return to game. ").strip().lower()
+            if choice_input == 'r':
+                print("Returning to game")
+                break
+            try:
+                choice = int(choice_input)
+                if 1 <= choice <= len(my_player.inventory):
+                    item_to_equip = my_player.inventory[choice - 1]
+                    my_player.equip_item(item_to_equip)
+                    break
+                else:
+                    print("Invalid number. Please choose again or press r to return to game.")
+            except ValueError:
+                print("Invalid input. Please enter a number or r.")
+        
+        return True, True
+
     return True, False
        
 should_run = True
@@ -111,7 +145,7 @@ def intro(room_list, enemy_list, loot_list):
     
    
     my_player.equipped['Armour'] = (items.leather_armour)
-  
+    my_player.equip_armour = items.leather_armour
     characters.character_sheet(my_player)
    
     print("After a twenty minute walk you reach the Katsscurse mansion. It is a large imposing building, but shows the signs of years of neglect.\nThe entrance gate hangs listlessly on its hinges.")
@@ -124,7 +158,7 @@ def play_game(my_player, room_list, enemy_list, loot_list):
     room_list, enemy_list, loot_list = init_game_data()
     while game_running:
         
-        user_input = input(f"What do you want to do?\nType q to quit\nType c to view character sheet\nTo continue through the mansion press m. ")
+        user_input = input(f"What do you want to do?\nType q to quit\nType c to view character sheet\nTo equip items from inventory press e\nTo continue through the mansion press m. ")
         should_run, command_handled = check_global_commands(user_input, my_player)
         if not should_run:
             return False

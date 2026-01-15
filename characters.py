@@ -46,11 +46,45 @@ class Character:
         else:
             return str(item_dict_or_list)
 
+    def equip_item(self, item):
+        if item.category == 'melee' or item.category == 'ranged' or item.category == 'magic weapon':
+            if self.equipped['Weapon'] is not None:
+                print(f"{self.name} unequipped {self.equipped['Weapon'].name}.")
+                self.equipped['Weapon'] = item
+                self.weapon = item
+                print(f"{self.name} equipped {item.name}.")
+        elif item.category == 'armour':
+            if self.equipped['Armour'] is not None:
+                print(f"{self.name} unequipped {self.equipped['Armour'].name}.")
+                self.equipped['Armour'] = item
+                self.equipped_armour = item
+                print(f"{self.name} equipped {item.name}.")
+        elif item.category == 'shield':
+            if self.equipped['Shield'] is not None:
+                print(f"{self.name} unequipped {self.equipped['Shield'].name}.")
+                self.equipped['Shield'] = item
+                self.equipped_shield = item
+                print(f"{self.name} equipped {item.name}.")
+        elif item.category == 'magic':
+            if self.equipped['Magic Item'] is not None:
+                print(f"{self.name} unequipped {self.equipped['Magic Item'].name}.")
+                self.equipped['Magic Item'] = item
+                self.equipped_magic = item
+                print(f"{self.name} equipped {item.name}.")
+        else:
+            print(f"Cannot equip {item.name}.")
+
+    def equip_weapon(self, weapon):
+        self.equip_item(weapon)
+    
     def equip_armour(self, armour):
-        if self.equipped_armour:
-            print(f"{self.name} unequipped {self.equipped_armour.name}.")
-        self.equipped_armour = armour
-        print(f"{self.name} equipped {armour.name}.")
+        self.equip_item(armour)
+
+    def equip_shield(self, armour):
+        self.equip_item(armour)
+
+    def equip_magic(self, magic):
+        self.equip_item(magic)
 
     def get_total_protection(self):
         total_protection = self.protection

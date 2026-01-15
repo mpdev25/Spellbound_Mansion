@@ -41,7 +41,7 @@ def start_battle(turn_order, player):
             melee_attack(attacker, defender)
         elif weapon_category == "ranged":
             ranged_attack(attacker, defender)
-        elif weapon_category == "magic":
+        elif weapon_category == "magic weapon":
             magic_attack(attacker, defender)
             
         if not defender.is_alive():
@@ -66,7 +66,7 @@ def check_defender_state(player, defender):
         return True
     while True:
         if isinstance (current_loot, items.Treasure) and current_loot.name == "tome of the sorcerer.":
-            player.inventory.append(current_loot) 
+           
             print("The tome contains many spells, but of particular interest is a teleportation spell you could use to leave the mansion.")
             print("Add the tome to your inventory, then Press t to teleport out of the mansion when you are not in combat.")
           
@@ -91,13 +91,20 @@ def check_defender_state(player, defender):
             if isinstance(current_loot, items.Weapon):
                 player.weapon = current_loot
                 player.equipped['Weapon'] = current_loot
+                print(f"{current_loot.name} equipped.")
             elif isinstance(current_loot, items.Armour):
                 if current_loot.category == "armour":
                     player.equipped_armour = current_loot
                     player.equipped['Armour'] = current_loot
+                    print(f"{current_loot.name} equipped.")
                 elif current_loot.category == "shield":
-                    player.equipped_shield = current_loot
-                    player.equipped['Shield'] = current_loot
+                    if player.weapon.hands == 1:
+                        player.equipped_shield = current_loot
+                        player.equipped['Shield'] = current_loot
+                        print(f"{current_loot.name} equipped.")
+                    else:
+                        player.inventory.append(current_loot)
+                        print("You cannot equip a shield as you are using a 2 handed weapon. Shield has been added to inventory.")
             elif isinstance(current_loot, items.MagicItem):
                 player.equipped_magic = current_loot
                 player.equipped['Magic Item'] = current_loot
@@ -107,7 +114,7 @@ def check_defender_state(player, defender):
                 player.inventory.append(current_loot)
                 print(f"{current_loot.name} cannot be equipped. It has been added to inventory")
                 break
-            print(f"{current_loot.name} equipped.")
+        
             break
         elif loot_choice == '3':
             print(f"You leave the {current_loot.name} behind")

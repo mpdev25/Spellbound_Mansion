@@ -23,13 +23,13 @@ short_sword = Weapon("melee", "short sword", "d6", dice.roll_d6, 1, 0)
 
 short_bow = Weapon("ranged", "shortbow", "d6", dice.roll_d6, 2, 0)
 
-magic_staff = Weapon("magic", "magic staff", "d6", dice.roll_d6, 2, 0)
+magic_staff = Weapon("magic weapon", "magic staff", "d6", dice.roll_d6, 2, 0)
 
 long_bow = Weapon("ranged", "longbow", "d8", dice.roll_d8, 2, 1)
 
 long_sword = Weapon("melee", "long sword", "d8", dice.roll_d8, 1, 1)
 
-fire_staff = Weapon("magic", "fire staff", "d20", dice.roll_d20, 2, 5)
+fire_staff = Weapon("magic weapon", "fire staff", "d20", dice.roll_d20, 2, 5)
 
 great_axe = Weapon("melee", "great axe", "d10", dice.roll_d10, 2, 2)
 
@@ -37,7 +37,7 @@ hellhound_teeth = Weapon("melee", "hellhound teeth", "d10", dice.roll_d10, 2, 0)
 
 spear = Weapon("melee", "spear", "d8", dice.roll_d8, 2, 1)
 
-psychic_blast = Weapon("magic", "psychic blast", "d12", dice.roll_d12, 1, 0)
+psychic_blast = Weapon("magic weapon", "psychic blast", "d12", dice.roll_d12, 1, 0)
 
 ghoul_claws = Weapon("melee", "ghoul claws", "d10", dice.roll_d10, 2, 1)
 
@@ -49,9 +49,9 @@ huge_spiked_club = Weapon("melee", "huge spiked club", "d12", dice.roll_d12, 2, 
 
 rat_bite = Weapon("melee", "rat bite", "d6", dice.roll_d6, 1, 0)
 
-deathly_touch = Weapon("magic", "deathly touch", "d12", dice.roll_d12, 2, 2)
+deathly_touch = Weapon("magic weapon", "deathly touch", "d12", dice.roll_d12, 2, 2)
 
-wand_of_destruction = Weapon("magic", "wand of destruction", "d20", dice.roll_d20, 1, 3)
+wand_of_destruction = Weapon("magic weapon", "wand of destruction", "d20", dice.roll_d20, 1, 3)
 
 enhanced_longbow = Weapon("ranged", "enhanced longbow", "d12", dice.roll_d12, 2, 2)
 
@@ -61,7 +61,7 @@ great_sword = Weapon("melee", "great sword", "d12", dice.roll_d12, 2, 3)
 
 heavy_crossbow = Weapon("ranged", "heavy crossbow", "d12", dice.roll_d12, 2, 3)
 
-staff_of_light = Weapon("magic", "staff of light", "d12", dice.roll_d12, 2, 3)
+staff_of_light = Weapon("magic weapon", "staff of light", "d12", dice.roll_d12, 2, 3)
 
 class Armour:
     def __init__(self, category, name, protection):
@@ -86,8 +86,9 @@ small_shield = Armour("shield", "small shield", 2)
 large_shield = Armour("shield", "large shield", 4)
 
 class MagicItem:
-    def __init__(self, name, life = None, protection=None):
+    def __init__(self, category, name, life = None, protection=None):
         self.name = name
+        self.category = category
         self.life = life
         self.protection = protection
              
@@ -95,30 +96,31 @@ class MagicItem:
         return f"({self.name} Life: {self.life} Protection: {self.protection})"
 
 
-potion_of_vitality = MagicItem("potion of vitality", 5)
+potion_of_vitality = MagicItem("magic", "potion of vitality", 5)
 
-greater_potion_of_vitality = MagicItem("greater potion of vitality", 10)
+greater_potion_of_vitality = MagicItem("magic", "greater potion of vitality", 10)
 
-potion_of_stone_skin = MagicItem("potion of stone skin", 0, 4)
+potion_of_stone_skin = MagicItem("magic", "potion of stone skin", 0, 4)
 
-shield_scroll = MagicItem("scroll of shield", 0, 6)
+shield_scroll = MagicItem("magic", "scroll of shield", 0, 6)
 
 class Treasure:
-    def __init__(self, name, value):
+    def __init__(self, category, name, value):
         self.name = name
+        self.category = category
         self.value = value
 
     def __str__(self):
         return f"({self.name} Value: {self.value})"
 
-giant_ruby = Treasure("giant ruby", 50)
+giant_ruby = Treasure("loot", "giant ruby", 50)
 
-small_chest = Treasure("small chest of gold coins", 20)
+small_chest = Treasure("loot", "small chest of gold coins", 20)
 
-large_chest = Treasure("large chest of gold and jewels", 100)
+large_chest = Treasure("loot", "large chest of gold and jewels", 100)
 
-pouch = Treasure("pouch of diamonds", 75)
+pouch = Treasure("loot", "pouch of diamonds", 75)
 
-sorcerers_horde = Treasure("the sorcerers hoard", 1000)
+sorcerers_horde = Treasure("loot", "the sorcerers hoard", 1000)
 
-sorcerers_tome = Treasure("tome of the sorcerer.", 750)
+sorcerers_tome = Treasure("loot", "tome of the sorcerer.", 750)
