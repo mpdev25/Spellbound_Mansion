@@ -33,16 +33,33 @@ class Character:
         return self.get_total_life() > 0
 
     def display_items(self, item_dict_or_list):
+        def format_item(item):
+            if item is None:
+                return "Empty"
+            details = [f"{item.name}"]
+            if hasattr(item, 'dice'):
+                details.append(f"Damage: {item.dice}")
+            if hasattr(item, 'hands'):
+                details.append(f"Hands: {item.hands}")
+            if hasattr(item, 'bonus'):
+                details.append(f"Bonus: {item.bonus}")
+            if hasattr(item, 'protection') and item.protection is not None:
+                details.append(f"Protection: {item.protection}")
+            if hasattr(item, 'life') and item.life is not None:
+                details.append(f"Life: {item.life}")
+            if hasattr(item, 'value') and item.value is not None:
+                details.append(f"Value: {item.value}")   
+            return " (" + " | ".join(details) + ")"
         if isinstance(item_dict_or_list, dict):
             lines = []
             for i, (slot, item) in enumerate(item_dict_or_list.items(), 1):
                 item_name = item.name if item is not None else 'None'
-                lines.append(f"{i}. {slot}: {item_name}")
+                lines.append(f"{i}. {slot}: {format_item(item)}")
             return "\n".join(lines)
         elif isinstance(item_dict_or_list, list):
             if not item_dict_or_list:
                 return " None"
-            return "\n".join([f"{i}. {item.name}" for i, item in enumerate(item_dict_or_list, 1)])
+            return "\n".join([f"{i}. {format_item(item)}" for i, item in enumerate(item_dict_or_list, 1)])
         else:
             return str(item_dict_or_list)
 
