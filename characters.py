@@ -77,19 +77,19 @@ class Character:
             self.equipped_armour = item
             print(f"{self.name} equipped {item.name}.")
         elif item.category == 'shield':
-         #  if self.equipped['Shield'] is not None:
+         
             if self.equipped_shield is not None:
                 print(f"{self.name} unequipped {self.equipped_shield.name}.")
-              #  print(f"{self.name} unequipped {self.equipped['Shield'].name}.")
+              
             self.equipped['Shield'] = item
             self.equipped_shield = item
             print(f"{self.name} equipped {item.name}.")
         elif item.category == 'magic':
-          #  if self.equipped['Magic Item'] is not None:
+         
             if self.equipped_magic is not None:
                 
                 print(f"{self.name} unequipped {self.equipped_magic.name}.")
-               # print(f"{self.name} unequipped {self.equipped['Magic Item'].name}.")
+               
             self.equipped['Magic Item'] = item
             self.equipped_magic = item
             print(f"{self.name} equipped {item.name}.")
@@ -164,7 +164,7 @@ def roll_character():
 
     total_bonus = melee_bonus + ranged_bonus + magic_bonus
     life = (roll_dice(20) + roll_dice(20)) // 2 + (total_bonus + 100)
-    protection = roll_dice(6) + total_bonus
+    protection = roll_dice(8) + total_bonus
     name = "player"
     starting_weapon = items.unarmed
     inventory = []
@@ -252,7 +252,7 @@ ghoul = Character("ghoul", 12, 12, 16, 14, 12, items.ghoul_claws, items.ghoul_cl
 
 animated_armour = Character("animated armour", 12, 18, 16, 12, 8, items.long_sword, items.long_sword)
 
-shadow_lurker = Character("shadodw lurker", 14, 20, 10, 18, 18, items.corrosive_spit, items.corrosive_spit)
+shadow_lurker = Character("shadodw lurker", 14, 18, 10, 18, 18, items.corrosive_spit, items.corrosive_spit)
 
 giant_spider = Character("giant spider", 16, 14, 14, 16, 6, items.spider_fangs, items.spider_fangs)
 

@@ -85,6 +85,8 @@ def check_defender_state(player, defender):
         
         if loot_choice == '1':
             player.inventory.append(current_loot)
+            if hasattr(current_loot, "value"):
+                player.loot.append(current_loot)
             print(f"{current_loot.name} added to inventory")
                     
             break

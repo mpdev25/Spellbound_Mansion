@@ -5,7 +5,7 @@ class Location:
         self.name = name
         self.description = description
 
-room_zero = Location("antechamber", "With just a gentle push the door to the mansion swings open.\nThe ease of entry gives you little comfort, after all if it's this weasy to get in, why has nobody ever come out?\nYou find yourself standing in a dimly lit antechamber with three doors, to your right, your left and straight ahead.\nSudenly the door behind you slams shut. You pull at the handle but the door is imobile. Looks like you'll have to take one of the other doors.")
+room_zero = Location("antechamber", "With just a gentle push the door to the mansion swings open.\nThe ease of entry gives you little comfort, after all if it's this easy to get in, why has nobody ever come out?\nYou find yourself standing in a dimly lit antechamber with three doors, to your right, your left and straight ahead.\nSudenly the door behind you slams shut. You pull at the handle but the door is immobile. Looks like you'll have to take one of the other doors.")
 
 room_one = Location("small bedroom", "This is a small, but richly furnished, bedroom.\nAs you step inside the door behind you closes and locks.\nThere are three other doors leading out of the room.")
 
@@ -43,6 +43,6 @@ room_seventeen = Location("small guest room", "The room has comfortable furnishi
 
 room_eighteen = Location("large pantry", "Food storage bins line the shelves of this room, but their contents have either rotted away, or lay coverd in dust.\nA clicking sound alerts you to the door behind you locking, but, strangely for a pantry, you see three other doors.")
 
-room_nineteen = Location("large guest room", "A spacious, opulently furnished room with a bed , work desk adn comfortable  chairs.\nThe door behind you quietly closes, but you can see three others doors leading out of the room.")
+room_nineteen = Location("large guest room", "A spacious, opulently furnished room with a bed, work desk and comfortable chairs.\nThe door behind you quietly closes, but you can see three others doors leading out of the room.")
 
 room_twenty = Location("occult workshop", "The room is filled with the trappings of the sorcerers craft, tomes of arcane law, scrying pots, summoning circles and the like.\nThe door behind you closes with a thunderous boom, but you can make out three other doors leading from the room.")

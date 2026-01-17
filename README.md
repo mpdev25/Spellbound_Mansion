@@ -7,13 +7,14 @@ Spellbound Mansion is my first attempt at writing a program by myself. It is a t
 # Controls
 
 To play the game follow the onscreen prompts for input options.
-The basics are:
-m to move
-c to view character sheet
-e to change equipped items
-q to quit the game
 
-These inputs cannot be used during combat.
+The basics are:
+* m to move
+* c to view character sheet
+* e to change equipped items
+* q to quit the game
+
+These inputs can only be used outside of combat.
 
 ## Requirements
 
